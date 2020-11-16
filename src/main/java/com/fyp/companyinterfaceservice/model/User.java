@@ -1,17 +1,20 @@
 package com.fyp.companyinterfaceservice.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
-import java.util.Set;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Company {
+@AllArgsConstructor
+public class User {
+
+    private long companyId;
     private String email;
     private String password;
     private String name;
@@ -19,6 +22,12 @@ public class Company {
     private String address;
     private String recruiter;
     private String recruiterPhone;
-    private boolean enabled;
     private Instant created;
+    private String role;
+    private String[] authorities;
+    private Boolean isLocked;
+    private Long expiresIn;
+    private String token;
+    private Boolean enabled;
+    private UserProfile profile;
 }

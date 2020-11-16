@@ -1,4 +1,4 @@
-package com.fyp.companyinterfaceservice.dto;
+package com.fyp.companyinterfaceservice.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

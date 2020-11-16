@@ -1,6 +1,6 @@
 package com.fyp.companyinterfaceservice.exceptions;
 
-import com.fyp.companyinterfaceservice.dto.HttpCustomResponse;
+import com.fyp.companyinterfaceservice.model.HttpCustomResponse;
 import feign.FeignException;
 import feign.RetryableException;
 import org.springframework.http.HttpMethod;
@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.nio.file.AccessDeniedException;
 import java.util.Objects;
 
-import static com.fyp.companyinterfaceservice.constants.ErrorConstants.INTERNAL_SERVER_ERROR_MSG;
-import static com.fyp.companyinterfaceservice.constants.ErrorConstants.INVALID_CREDENTIALS;
-import static com.fyp.companyinterfaceservice.constants.ErrorConstants.INVALID_DATA_FORMAT;
-import static com.fyp.companyinterfaceservice.constants.ErrorConstants.METHOD_IS_NOT_ALLOWED;
-import static com.fyp.companyinterfaceservice.constants.ErrorConstants.NOT_ENOUGH_PERMISSION;
-import static com.fyp.companyinterfaceservice.constants.ErrorConstants.SERVER_COULD_NOT_BE_REACH;
-import static com.fyp.companyinterfaceservice.constants.ErrorConstants.UNEXPECTED_VALUE;
-import static com.fyp.companyinterfaceservice.constants.ErrorConstants.USERNAME_OR_EMAIL_EXISTS;
+import static com.fyp.companyinterfaceservice.constant.ErrorConstants.EMAIL_ALREADY_EXISTS;
+import static com.fyp.companyinterfaceservice.constant.ErrorConstants.INTERNAL_SERVER_ERROR_MSG;
+import static com.fyp.companyinterfaceservice.constant.ErrorConstants.INVALID_CREDENTIALS;
+import static com.fyp.companyinterfaceservice.constant.ErrorConstants.INVALID_DATA_FORMAT;
+import static com.fyp.companyinterfaceservice.constant.ErrorConstants.METHOD_IS_NOT_ALLOWED;
+import static com.fyp.companyinterfaceservice.constant.ErrorConstants.NOT_ENOUGH_PERMISSION;
+import static com.fyp.companyinterfaceservice.constant.ErrorConstants.SERVER_COULD_NOT_BE_REACH;
+import static com.fyp.companyinterfaceservice.constant.ErrorConstants.UNEXPECTED_VALUE;
+import static com.fyp.companyinterfaceservice.constant.ErrorConstants.USERNAME_ALREADY_EXISTS;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
@@ -32,7 +33,6 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @RestControllerAdvice
 public class CompanyExceptionHandler {
-
 
     @ExceptionHandler(FeignException.class)
     public ResponseEntity<HttpCustomResponse> handleFeignStatusException(FeignException e) {
@@ -52,18 +52,23 @@ public class CompanyExceptionHandler {
 //            case 423:
 //                toReturn = accountLockedException();
 //                break;
-            case 409:
-                toReturn = usernameOrEmailExistsException();
-                break;
+//            case 409:
+//                toReturn = usernameOrEmailExistsException();
+//                break;
             case 500:
                 toReturn = internalServerErrorException();
         }
         return toReturn;
     }
 
-    @ExceptionHandler(UsernameOrEmailExistsException.class)
-    public ResponseEntity<HttpCustomResponse> usernameOrEmailExistsException() {
-        return createHttpResponse(CONFLICT, USERNAME_OR_EMAIL_EXISTS);
+    @ExceptionHandler(UsernameExistsException.class)
+    public ResponseEntity<HttpCustomResponse> usernameExistsException() {
+        return createHttpResponse(CONFLICT, USERNAME_ALREADY_EXISTS);
+    }
+
+    @ExceptionHandler(EmailExistsException.class)
+    public ResponseEntity<HttpCustomResponse> emailExistsException() {
+        return createHttpResponse(CONFLICT, EMAIL_ALREADY_EXISTS);
     }
 
     @ExceptionHandler(RetryableException.class)
