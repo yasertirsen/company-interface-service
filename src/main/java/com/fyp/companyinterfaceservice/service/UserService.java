@@ -17,7 +17,7 @@ public interface UserService {
 
     User findUserByToken(String Token);
 
-    User login(User user) throws Exception;
+    User getCurrentUser();
 
     ResponseEntity<String> verifyAccount(String token);
 }

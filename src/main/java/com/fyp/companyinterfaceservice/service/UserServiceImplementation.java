@@ -6,7 +6,6 @@ import com.fyp.companyinterfaceservice.exceptions.ProgradException;
 import com.fyp.companyinterfaceservice.exceptions.UserNotFoundException;
 import com.fyp.companyinterfaceservice.exceptions.UsernameExistsException;
 import com.fyp.companyinterfaceservice.model.NotificationEmail;
-import com.fyp.companyinterfaceservice.model.Resume;
 import com.fyp.companyinterfaceservice.model.User;
 import com.fyp.companyinterfaceservice.model.UserPrincipal;
 import com.fyp.companyinterfaceservice.model.UserProfile;
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -63,7 +63,7 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
         user.setToken(verificationToken);
         user.setProfile(new UserProfile());
 
-        User registeredUser = progradClient.register(user);
+        User registeredUser = progradClient.add(user);
         registeredUser.setPassword(StringUtils.EMPTY);
 
         mailService.sendMail(new NotificationEmail("Account Activation - Prograd Employers",
@@ -101,16 +101,10 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
     }
 
     @Override
-    public User login(User user) throws Exception {
-        return progradClient.login(bearerToken, user);
-    }
-
-    @Override
     public ResponseEntity<String> verifyAccount(String token) {
         User user = findUserByToken(token);
         user.setEnabled(true);
-        //update user
-        progradClient.register(user);
+        progradClient.update(bearerToken, user);
 
         return new ResponseEntity<>(new Gson().toJson("Account Activated Successfully"), HttpStatus.OK);
     }
@@ -121,5 +115,12 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         return new UserPrincipal(user);
+    }
+
+    @Override
+    public User getCurrentUser() {
+        User principal = (User) SecurityContextHolder.
+                getContext().getAuthentication().getPrincipal();
+        return findUserByEmail(principal.getEmail());
     }
 }

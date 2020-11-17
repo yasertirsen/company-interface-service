@@ -6,6 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,31 +19,27 @@ public interface ProgradClient {
     String AUTH_TOKEN = "x-api-key";
     String bearerToken  = "development_token";
 
-//    String AUTH_TOKEN = "x-api-key";
-//    String bearerToken  = "development_token";
-//
-//    @PutMapping(value = "/all")
-//    @Headers({"Content-Type: application/json"})
-//    public ResponseEntity<User> login(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody User user);
-
     @GetMapping("/all")
-    List<User> getAllCompanies();
-    @PostMapping("/register")
-    User register(@RequestBody User user);
-//    @GetMapping("/verification/{token}")
-//    ResponseEntity<String> verifyAccount(@PathVariable String token);
+    List<User> getAllCompanies(@RequestHeader(AUTH_TOKEN) String bearerToken);
+
+    @PostMapping("/add")
+    User add(@RequestBody User user);
+
+    @PutMapping("/update")
+    User update(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody User user);
+
     @PostMapping("/login")
     User login(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody User user);
 
-    @GetMapping(value = "/findByEmail")
+    @GetMapping("/findByEmail")
     @Headers({"Content-Type: application/json"})
     ResponseEntity<User> findByEmail(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam String email);
 
-    @GetMapping(value = "/findByName")
+    @GetMapping("/findByName")
     @Headers({"Content-Type: application/json"})
     ResponseEntity<User> findByName(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam String name);
 
-    @GetMapping(value = "/findByToken")
+    @GetMapping("/findByToken")
     @Headers({"Content-Type: application/json"})
     ResponseEntity<User> findByToken(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam String token);
 

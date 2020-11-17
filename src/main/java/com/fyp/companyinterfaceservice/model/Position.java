@@ -10,10 +10,10 @@ import java.util.Set;
 @NoArgsConstructor
 public class Position {
     private long positionId;
-    private String positionName;
-    private String positionDescription;
-    private double positionSalary;
-    private String positionUrl;
+    private String title;
+    private String description;
+    private double salary;
+    private String url;
     private int clicks;
     private User user;
     private Set<Skill> requirements;
