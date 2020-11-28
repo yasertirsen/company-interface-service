@@ -4,6 +4,7 @@ import com.fyp.companyinterfaceservice.exceptions.EmailExistsException;
 import com.fyp.companyinterfaceservice.exceptions.ProgradException;
 import com.fyp.companyinterfaceservice.exceptions.UserNotFoundException;
 import com.fyp.companyinterfaceservice.exceptions.UsernameExistsException;
+import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.model.User;
 import org.springframework.http.ResponseEntity;
 
@@ -20,4 +21,6 @@ public interface UserService {
     User getCurrentUser();
 
     ResponseEntity<String> verifyAccount(String token);
+
+    Position addPosition(Position position);
 }

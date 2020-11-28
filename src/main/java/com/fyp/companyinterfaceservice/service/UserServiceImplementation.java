@@ -6,6 +6,7 @@ import com.fyp.companyinterfaceservice.exceptions.ProgradException;
 import com.fyp.companyinterfaceservice.exceptions.UserNotFoundException;
 import com.fyp.companyinterfaceservice.exceptions.UsernameExistsException;
 import com.fyp.companyinterfaceservice.model.NotificationEmail;
+import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.model.User;
 import com.fyp.companyinterfaceservice.model.UserPrincipal;
 import com.fyp.companyinterfaceservice.model.UserProfile;
@@ -107,6 +108,11 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
         progradClient.update(bearerToken, user);
 
         return new ResponseEntity<>(new Gson().toJson("Account Activated Successfully"), HttpStatus.OK);
+    }
+
+    @Override
+    public Position addPosition(Position position) {
+        return progradClient.addPosition(position);
     }
 
     @Override

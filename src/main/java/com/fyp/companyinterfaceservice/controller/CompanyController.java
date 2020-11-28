@@ -7,6 +7,7 @@ import com.fyp.companyinterfaceservice.exceptions.ProgradException;
 import com.fyp.companyinterfaceservice.exceptions.UserNotFoundException;
 import com.fyp.companyinterfaceservice.exceptions.UsernameExistsException;
 import com.fyp.companyinterfaceservice.jwt.JWTTokenProvider;
+import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.model.User;
 import com.fyp.companyinterfaceservice.model.UserPrincipal;
 import com.fyp.companyinterfaceservice.service.UserService;
@@ -68,5 +69,10 @@ public class CompanyController {
     @GetMapping(value = "verification/{token}")
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         return userService.verifyAccount(token);
+    }
+
+    @PostMapping("/positions/add")
+    public Position addPosition(@RequestBody Position position) {
+        return userService.addPosition(position);
     }
 }

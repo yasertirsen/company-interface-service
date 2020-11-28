@@ -1,5 +1,6 @@
 package com.fyp.companyinterfaceservice.client;
 
+import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.model.User;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -19,29 +20,39 @@ public interface ProgradClient {
     String AUTH_TOKEN = "x-api-key";
     String bearerToken  = "development_token";
 
-    @GetMapping("/all")
+    // companies endpoint
+
+    @GetMapping("/companies/all")
     List<User> getAllCompanies(@RequestHeader(AUTH_TOKEN) String bearerToken);
 
-    @PostMapping("/add")
+    @PostMapping("/companies/add")
     User add(@RequestBody User user);
 
-    @PutMapping("/update")
+    @PutMapping("/companies/update")
     User update(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody User user);
 
-    @PostMapping("/login")
+    @PostMapping("/companies/login")
     User login(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody User user);
 
-    @GetMapping("/findByEmail")
+    @GetMapping("/companies/findByEmail")
     @Headers({"Content-Type: application/json"})
     ResponseEntity<User> findByEmail(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam String email);
 
-    @GetMapping("/findByName")
+    @GetMapping("/companies/findByName")
     @Headers({"Content-Type: application/json"})
     ResponseEntity<User> findByName(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam String name);
 
-    @GetMapping("/findByToken")
+    @GetMapping("/companies/findByToken")
     @Headers({"Content-Type: application/json"})
     ResponseEntity<User> findByToken(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam String token);
+
+    // positions endpoint
+
+    @PostMapping("/positions/add")
+    Position addPosition(@RequestBody Position position);
+
+    @PutMapping("/positions/update")
+    User updatePosition(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody Position position);
 
 //    @PostMapping("/logout")
 //    ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest);
