@@ -1,7 +1,6 @@
 package com.fyp.companyinterfaceservice.controller;
 
 
-import com.fyp.companyinterfaceservice.client.ProgradClient;
 import com.fyp.companyinterfaceservice.exceptions.EmailExistsException;
 import com.fyp.companyinterfaceservice.exceptions.ProgradException;
 import com.fyp.companyinterfaceservice.exceptions.UserNotFoundException;
@@ -10,8 +9,7 @@ import com.fyp.companyinterfaceservice.jwt.JWTTokenProvider;
 import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.model.User;
 import com.fyp.companyinterfaceservice.model.UserPrincipal;
-import com.fyp.companyinterfaceservice.service.UserService;
-import lombok.AllArgsConstructor;
+import com.fyp.companyinterfaceservice.service.interfaces.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

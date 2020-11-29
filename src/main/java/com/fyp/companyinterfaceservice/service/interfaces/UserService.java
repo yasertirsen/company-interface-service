@@ -1,4 +1,4 @@
-package com.fyp.companyinterfaceservice.service;
+package com.fyp.companyinterfaceservice.service.interfaces;
 
 import com.fyp.companyinterfaceservice.exceptions.EmailExistsException;
 import com.fyp.companyinterfaceservice.exceptions.ProgradException;

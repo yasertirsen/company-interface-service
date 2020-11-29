@@ -44,10 +44,20 @@
       <div class="login-failed" *ngIf='this.isError'>
         <p class="login-failed-text">Login Failed. Please check your credentials and try again.</p>
       </div>
-      <div class="login-failed" [ngStyle]="{'background-color': 'green'}"
-           *ngIf="undefined !== this.registerSuccessMessage && this.registerSuccessMessage.length > 0">
-        <p class="register-success-text">{{registerSuccessMessage}}</p>
+
+      <div class="login-failed" *ngIf='this.isError'>
+        <p class="login-failed-text"></p>
       </div>
+      <ngb-alert #staticAlertFail
+                 *ngIf="this.isError"
+                 type="danger"
+                 (closed)="loginFailMessage = ''">{{ loginFailMessage }}
+      </ngb-alert>
+      <ngb-alert #staticAlertSuccess
+                 *ngIf="undefined !== this.registerSuccessMessage && this.registerSuccessMessage.length > 0"
+                 type="success"
+                 (closed)="registerSuccessMessage = ''">{{ registerSuccessMessage }}
+      </ngb-alert>
     </div>
     <div class="offset-3"></div>
   </div>
