@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="container">
+  <div class="row">
+    <div class="offset-2"></div>
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-title *ngIf="user.name !== null">
+          {{user.name}} Graduate Positions Dashboard
+        </mat-card-title>
+        <mat-card-subtitle>
+          Here you can view information about your job posts such as analytical data.
+        </mat-card-subtitle>
+      </mat-card>
+    </div>
+  </div>
+</div>

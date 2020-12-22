@@ -11,27 +11,23 @@
 
       <div class="login-form">
         <mat-card-content>
-          <form #f="ngForm" (ngSubmit)="f.form.valid && loginCompany()" novalidate>
-            <mat-form-field class="full-width">
+          <form (ngSubmit)="loginCompany()" novalidate>
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Email</mat-label>
               <input matInput
                      placeholder="Email"
                      name="email"
                      [(ngModel)]="model.email"
-                     #email="ngModel"
-                     [ngClass]="{ 'is-invalid': f.submitted && email.invalid}"
                      required>
             </mat-form-field>
 
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Password</mat-label>
               <input matInput
                      placeholder="Password"
                      name="password"
                      type="password"
                      [(ngModel)]="model.password"
-                     #password="ngModel"
-                     [ngClass]="{ 'is-invalid': f.submitted && password.invalid}"
                      required>
             </mat-form-field>
             <button mat-raised-button type="submit" color="accent">

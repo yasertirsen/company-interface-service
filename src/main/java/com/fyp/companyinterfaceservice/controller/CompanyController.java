@@ -64,7 +64,7 @@ public class CompanyController {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
     }
 
-    @GetMapping(value = "verification/{token}")
+    @GetMapping(value = "/verification/{token}")
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         return userService.verifyAccount(token);
     }
@@ -72,5 +72,10 @@ public class CompanyController {
     @PostMapping("/positions/add")
     public Position addPosition(@RequestBody Position position) {
         return userService.addPosition(position);
+    }
+
+    @GetMapping("/currentUser")
+    public User getCurrentUser() {
+        return userService.getCurrentUser();
     }
 }

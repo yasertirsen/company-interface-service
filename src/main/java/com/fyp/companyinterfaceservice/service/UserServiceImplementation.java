@@ -126,8 +126,8 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
 
     @Override
     public User getCurrentUser() {
-        User principal = (User) SecurityContextHolder.
+        String email = (String) SecurityContextHolder.
                 getContext().getAuthentication().getPrincipal();
-        return findUserByEmail(principal.getEmail());
+        return findUserByEmail(email);
     }
 }

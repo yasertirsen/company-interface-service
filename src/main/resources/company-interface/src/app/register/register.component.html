@@ -7,59 +7,76 @@
         <p class="text-center">Get started with your Prograd Employers account!</p>
         <hr>
       </div>
-      <div class="register-img">
-        <img
-          class='resize_fit_center'
-          src="assets/img/employees.jpg"
-          alt="Prograd Employers">
-      </div>
-
       <div class="register-form">
         <mat-card-content>
-          <form #f="ngForm" (ngSubmit)="f.form.valid && registerCompany()" novalidate>
-            <mat-form-field class="full-width">
+          <form (ngSubmit)="registerCompany()" novalidate>
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Company</mat-label>
               <input matInput
                      placeholder="Company"
                      name="company"
-                     [(ngModel)]="model.name"
-                     #name="ngModel"
-                     [ngClass]="{ 'is-invalid': f.submitted && name.invalid}"
+                     [(ngModel)]="user.name"
                      required>
             </mat-form-field>
-
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Email</mat-label>
               <input matInput
                      placeholder="Email"
                      name="email"
-                     [(ngModel)]="model.email"
-                     #email="ngModel"
-                     [ngClass]="{ 'is-invalid': f.submitted && email.invalid}"
+                     [(ngModel)]="user.email"
                      required email>
 
             </mat-form-field>
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Password</mat-label>
               <input matInput
                      placeholder="Password"
                      name="password"
                      type="password"
-                     [(ngModel)]="model.password"
-                     #password="ngModel"
-                     [ngClass]="{ 'is-invalid': f.submitted && password.invalid}"
+                     [(ngModel)]="user.password"
                      required>
             </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Company Website</mat-label>
+              <input matInput
+                     placeholder="Company Website Link"
+                     name="company-url"
+                     [(ngModel)]="user.companyUrl"
+                     required>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>HR Contact Name</mat-label>
+              <input matInput
+                     placeholder="HR Contact Name"
+                     name="recruiter"
+                     [(ngModel)]="user.recruiter"
+                     required>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>HR Contact Number</mat-label>
+              <input matInput
+                     placeholder="Phone Number"
+                     name="recruiter"
+                     [(ngModel)]="user.recruiterPhone"
+                     required>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Company Address</mat-label>
+              <input matInput
+                     placeholder="Company Address"
+                     name="recruiter"
+                     [(ngModel)]="user.address"
+                     required>
+            </mat-form-field>
+
             <button mat-raised-button type="submit" color="accent">
               <i class="fa fa-user"></i>
               <span> Register</span>
             </button>
-
           </form>
         </mat-card-content>
       </div>
     </div>
-    <div class="offset-3"></div>
   </div>
 </div>
 
