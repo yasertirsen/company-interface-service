@@ -8,6 +8,8 @@ import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.model.User;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Set;
+
 public interface UserService {
 
     User register(User user) throws UsernameExistsException, EmailExistsException, UserNotFoundException, ProgradException;
@@ -23,4 +25,8 @@ public interface UserService {
     ResponseEntity<String> verifyAccount(String token);
 
     Position addPosition(Position position);
+
+    User updateUser(User user);
+
+    Set<Position> getCompanyPositions(Long id);
 }

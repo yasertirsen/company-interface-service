@@ -9,6 +9,6 @@ export interface PositionModel {
   date: string;
   salary: number;
   clicks: number;
-  user: UserModel;
+  company: UserModel;
   requirements: SkillModel[];
 }

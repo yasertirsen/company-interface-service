@@ -9,6 +9,12 @@
         <mat-card-subtitle>
           Here you can view information about your job posts such as analytical data.
         </mat-card-subtitle>
+        <mat-card-content>
+          <p><strong>Number of positions open: </strong> {{ positions.length }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a routerLink="/add-job"><button mat-raised-button color="primary">Add Job</button></a>
+        </mat-card-actions>
       </mat-card>
     </div>
   </div>

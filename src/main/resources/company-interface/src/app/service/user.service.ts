@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {UserModel} from "../models/user.model";
+import {ProfileModel} from "../models/profile.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +18,25 @@ export class UserService {
         'Authorization': `Bearer ${token}`
       })
     });
+  }
+
+  updateUser(user: UserModel): Observable<UserModel>{
+    return this.http.put<UserModel>('http://localhost:8081/update',
+      {
+        "companyId": user.companyId,
+        "email": user.email,
+        "password": user.password,
+        "name": user.name,
+        "companyUrl": user.companyUrl,
+        "address": user.address,
+        "recruiter": user.recruiter,
+        "recruiterPhone": user.recruiterPhone,
+        "created": user.created,
+        "role": user.role,
+        "authorities": user.authorities,
+        "isLocked": user.isLocked,
+        "enabled": user.enabled,
+        "profile": user.profile
+      });
   }
 }

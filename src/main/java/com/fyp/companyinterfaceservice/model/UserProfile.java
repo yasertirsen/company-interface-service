@@ -13,5 +13,4 @@ public class UserProfile {
 
     private long profileId;
     Set<Student> hiredStudents;
-    Set<Position> positions;
 }

@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-2"></div>
+    <div class="col-md-12">
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Job title</ng-template>
+            <mat-form-field>
+              <mat-label>Job Title</mat-label>
+              <input matInput placeholder="Job Title" formControlName="firstCtrl" required
+                     [(ngModel)]="position.title">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Description</ng-template>
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <input matInput placeholder="Description" formControlName="firstCtrl" required
+                     [(ngModel)]="position.description">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Location</ng-template>
+            <mat-form-field>
+              <mat-label>City</mat-label>
+              <input matInput formControlName="firstCtrl" placeholder="City" required
+                     [(ngModel)]="position.location">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Requirements</ng-template>
+            <p>Add requirements for position separated by comma</p>
+            <mat-form-field>
+              <mat-label>Skills</mat-label>
+              <input matInput formControlName="firstCtrl" placeholder="Adobe suite, Angular..." required
+                     [(ngModel)]="requirementsText">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="onDone()">Done</button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </div>
+</div>

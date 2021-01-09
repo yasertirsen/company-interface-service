@@ -26,6 +26,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Set;
 import java.util.UUID;
 
 import static com.fyp.companyinterfaceservice.constant.ErrorConstants.EMAIL_ALREADY_EXISTS;
@@ -114,6 +115,16 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
     @Override
     public Position addPosition(Position position) {
         return progradClient.addPosition(position);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        return progradClient.update(bearerToken, user);
+    }
+
+    @Override
+    public Set<Position> getCompanyPositions(Long id) {
+        return progradClient.getCompanyPositions(bearerToken, id);
     }
 
     @Override

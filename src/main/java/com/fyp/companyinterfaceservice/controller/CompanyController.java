@@ -16,13 +16,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+
+import java.util.Set;
 
 import static com.fyp.companyinterfaceservice.constant.SecurityConstants.EXPIRATION_TIME;
 
@@ -78,4 +75,15 @@ public class CompanyController {
     public User getCurrentUser() {
         return userService.getCurrentUser();
     }
+
+    @PutMapping("/update")
+    public User updateUser(@RequestBody User user) {
+        return userService.updateUser(user);
+    }
+
+    @GetMapping("/getCompanyPositions/{companyId}")
+    public Set<Position> getCompanyPositions(@PathVariable Long companyId) {
+        return userService.getCompanyPositions(companyId);
+    }
+
 }
