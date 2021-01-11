@@ -1,10 +1,7 @@
 package com.fyp.companyinterfaceservice.controller;
 
 
-import com.fyp.companyinterfaceservice.exceptions.EmailExistsException;
-import com.fyp.companyinterfaceservice.exceptions.ProgradException;
-import com.fyp.companyinterfaceservice.exceptions.UserNotFoundException;
-import com.fyp.companyinterfaceservice.exceptions.UsernameExistsException;
+import com.fyp.companyinterfaceservice.exceptions.*;
 import com.fyp.companyinterfaceservice.jwt.JWTTokenProvider;
 import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.model.User;
@@ -16,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -28,12 +26,14 @@ public class CompanyController {
 
     private final UserService userService;
     private final JWTTokenProvider jwtTokenProvider;
+    private final BCryptPasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public CompanyController(UserService userService, JWTTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager) {
+    public CompanyController(UserService userService, JWTTokenProvider jwtTokenProvider, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
         this.userService = userService;
         this.jwtTokenProvider = jwtTokenProvider;
+        this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
     }
 
@@ -47,14 +47,18 @@ public class CompanyController {
     public ResponseEntity<User> login(@RequestBody User user) throws Exception {
 
         User loggedUser = userService.findUserByEmail(user.getEmail());
-        authenticate(loggedUser.getEmail(), loggedUser.getPassword());
-        UserPrincipal userPrincipal = new UserPrincipal(loggedUser);
+        if(passwordEncoder.matches(user.getPassword(), loggedUser.getPassword())) {
+            authenticate(loggedUser.getEmail(), loggedUser.getPassword());
+            UserPrincipal userPrincipal = new UserPrincipal(loggedUser);
 
-        loggedUser.setPassword(StringUtils.EMPTY);
-        loggedUser.setExpiresIn(EXPIRATION_TIME);
-        loggedUser.setToken(jwtTokenProvider.generateJwtToken(userPrincipal));
+            loggedUser.setPassword(StringUtils.EMPTY);
+            loggedUser.setExpiresIn(EXPIRATION_TIME);
+            loggedUser.setToken(jwtTokenProvider.generateJwtToken(userPrincipal));
 
-        return new ResponseEntity<>(loggedUser, HttpStatus.OK);
+            return new ResponseEntity<>(loggedUser, HttpStatus.OK);
+        }
+        else
+            throw new IncorrectPasswordException();
     }
 
     private void authenticate(String username, String password) {

@@ -34,6 +34,8 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 @RestControllerAdvice
 public class CompanyExceptionHandler {
 
+    public static final String INCORRECT_PASSWORD = "Incorrect password";
+
     @ExceptionHandler(FeignException.class)
     public ResponseEntity<HttpCustomResponse> handleFeignStatusException(FeignException e) {
 
@@ -59,6 +61,11 @@ public class CompanyExceptionHandler {
                 toReturn = internalServerErrorException();
         }
         return toReturn;
+    }
+
+    @ExceptionHandler(IncorrectPasswordException.class)
+    public ResponseEntity<HttpCustomResponse> incorrectPasswordException () {
+        return createHttpResponse(BAD_REQUEST, INCORRECT_PASSWORD);
     }
 
     @ExceptionHandler(UsernameExistsException.class)

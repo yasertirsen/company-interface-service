@@ -114,7 +114,7 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
 
     @Override
     public Position addPosition(Position position) {
-        return progradClient.addPosition(position);
+        return progradClient.addPosition(bearerToken, position);
     }
 
     @Override

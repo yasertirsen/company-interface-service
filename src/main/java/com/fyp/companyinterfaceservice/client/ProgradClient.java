@@ -45,7 +45,7 @@ public interface ProgradClient {
     // positions endpoint
 
     @PostMapping("/positions/add")
-    Position addPosition(@RequestBody Position position);
+    Position addPosition(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody Position position);
 
     @PutMapping("/positions/update")
     User updatePosition(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody Position position);
