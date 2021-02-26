@@ -2,6 +2,10 @@
   padding-top: 20px;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .job-search {
   font-size: 15px;
 }
@@ -38,6 +42,11 @@
 .step-btn {
   flex: 1 1 auto;
   justify-content: end;
+}
+
+.positions-table {
+  width: 100%;
+  margin: 10px 10px 10px 10px;
 }
 
 

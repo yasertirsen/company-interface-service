@@ -48,10 +48,13 @@ public interface ProgradClient {
     Position addPosition(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody Position position);
 
     @PutMapping("/positions/update")
-    User updatePosition(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody Position position);
+    Position updatePosition(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestBody Position position);
 
     @GetMapping("/positions/getCompanyPositions/{companyId}")
-    Set<Position> getCompanyPositions(@RequestHeader(AUTH_TOKEN) String bearerToken, @PathVariable Long companyId);
+    List<Position> getCompanyPositions(@RequestHeader(AUTH_TOKEN) String bearerToken, @PathVariable Long companyId);
+
+    @DeleteMapping("/positions/delete/{positionId}")
+    ResponseEntity<String> deletePosition(@RequestHeader(AUTH_TOKEN) String bearerToken, @PathVariable Long positionId);
 
 //    @PostMapping("/logout")
 //    ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest);

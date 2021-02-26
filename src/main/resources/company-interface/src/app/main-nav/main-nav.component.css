@@ -1,13 +1,12 @@
 .sidenav-container {
   height: 100%;
 }
+.sidenav a{
+  color: black;
+}
 
 .sidenav {
   width: 200px;
-}
-
-.sidenav .mat-toolbar {
-  background: inherit;
 }
 
 .mat-toolbar.mat-primary {
@@ -31,6 +30,17 @@ mat-toolbar a {
   text-decoration: none;
 }
 
+.sidenav mat-icon {
+  margin: 10px 10px 10px 10px;
+  color: #777777;
+}
+
 mat-icon {
-  margin: 0 5px;
+  margin: 10px 10px 10px 10px;
+}
+
+img {
+  margin: 5px 5px 5px 5px;
+  height: 50px;
+  width: 50px;
 }

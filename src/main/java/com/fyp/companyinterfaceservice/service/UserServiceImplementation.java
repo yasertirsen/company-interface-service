@@ -26,6 +26,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -113,18 +116,8 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
     }
 
     @Override
-    public Position addPosition(Position position) {
-        return progradClient.addPosition(bearerToken, position);
-    }
-
-    @Override
     public User updateUser(User user) {
         return progradClient.update(bearerToken, user);
-    }
-
-    @Override
-    public Set<Position> getCompanyPositions(Long id) {
-        return progradClient.getCompanyPositions(bearerToken, id);
     }
 
     @Override

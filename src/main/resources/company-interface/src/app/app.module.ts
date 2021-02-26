@@ -26,7 +26,17 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddJobComponent } from './add-job/add-job.component';
+import { JobTileComponent } from './shared/job-tile/job-tile.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatSpinnerOverlayComponent} from './shared/mat-spinner-overlay/mat-spinner-overlay.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatStepperModule} from "@angular/material/stepper";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EditJobDialogComponent } from './home/edit-job-dialog/edit-job-dialog.component';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { ConfirmDeleteComponent } from './home/confirm-delete/confirm-delete.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +46,11 @@ import {MatStepperModule} from "@angular/material/stepper";
     NotFoundComponent,
     MainNavComponent,
     HomeComponent,
-    AddJobComponent
+    AddJobComponent,
+    JobTileComponent,
+    MatSpinnerOverlayComponent,
+    EditJobDialogComponent,
+    ConfirmDeleteComponent
   ],
     imports: [
         BrowserModule,
@@ -59,7 +73,13 @@ import {MatStepperModule} from "@angular/material/stepper";
         ToastrModule.forRoot(),
         NgbModule,
         MatStepperModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatTableModule,
+        MatProgressSpinnerModule,
+        MatDialogModule,
+        MatChipsModule,
+        MatSnackBarModule,
+        MatAutocompleteModule
     ],
   providers: [],
   bootstrap: [AppComponent]

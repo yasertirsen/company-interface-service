@@ -22,12 +22,14 @@ export class AddJobComponent implements OnInit {
   user: UserModel;
   requirementsText: string;
   requirementsNames: string[];
+  loading = true;
   position: PositionModel = {
     positionId: 0,
     title: '',
     description: '',
     location: '',
     date: null,
+    url: null,
     salary: 0,
     clicks: 0,
     company: null,
@@ -40,6 +42,7 @@ export class AddJobComponent implements OnInit {
     this.userService.getCurrentUser(this.token).subscribe(user => {
       this.user = user;
       this.position.company = this.user;
+      this.loading = false;
     });
   }
 

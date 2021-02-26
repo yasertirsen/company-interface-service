@@ -8,6 +8,7 @@ import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.model.User;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Set;
 
 public interface UserService {
@@ -24,9 +25,5 @@ public interface UserService {
 
     ResponseEntity<String> verifyAccount(String token);
 
-    Position addPosition(Position position);
-
     User updateUser(User user);
-
-    Set<Position> getCompanyPositions(Long id);
 }

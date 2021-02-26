@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Edit Position</h1>
+<div class="content" mat-dialog-content>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="position.title">
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Location</mat-label>
+    <input matInput [(ngModel)]="position.location">
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Salary</mat-label>
+    <input matInput [(ngModel)]="position.salary" type="number">
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>URL</mat-label>
+    <input matInput [(ngModel)]="position.url" type="number">
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Requirements</mat-label>
+    <mat-chip-list #chipList aria-label="Skills selection">
+      <mat-chip
+        color="primary"
+        *ngFor="let skill of skills"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="removeSkill(skill)">
+        {{skill.skillName}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        class="full-width"
+        placeholder="Skills"
+        [formControl]="skillsCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addSkill($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedSkill($event)">
+      <mat-option *ngFor="let skill of filteredSkills | async" [value]="skill.skillName">
+        {{skill.skillName}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="position.description"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onSave()" cdkFocusInitial>Save Changes</button>
+</div>

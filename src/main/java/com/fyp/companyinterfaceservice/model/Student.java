@@ -26,6 +26,6 @@ public class Student {
     private Boolean isLocked;
     private Long expiresIn;
     private String token;
-    private UserProfile profile;
+    private StudentProfile profile;
     private Resume resume;
 }

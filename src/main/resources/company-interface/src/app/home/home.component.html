@@ -1,10 +1,15 @@
-<div class="container">
+<app-mat-spinner-overlay
+  overlay="true"
+  *ngIf="loading === true">
+</app-mat-spinner-overlay>
+
+<div class="container" *ngIf="loading === false">
   <div class="row">
     <div class="offset-2"></div>
     <div class="col-md-12">
-      <mat-card>
+      <mat-card class="full-width">
         <mat-card-title *ngIf="user.name !== null">
-          {{user.name}} Graduate Positions Dashboard
+          {{user.name}} Jobs Dashboard
         </mat-card-title>
         <mat-card-subtitle>
           Here you can view information about your job posts such as analytical data.
@@ -16,6 +21,54 @@
           <a routerLink="/add-job"><button mat-raised-button color="primary">Add Job</button></a>
         </mat-card-actions>
       </mat-card>
+
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Date or title" #input>
+      </mat-form-field>
+
+      <table mat-table [dataSource]="datasource" class="positions-table">
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let position">{{position.date}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>Title</th>
+          <td mat-cell *matCellDef="let position">{{position.title}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef>Location</th>
+          <td mat-cell *matCellDef="let position">{{position.location}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="clicks">
+          <th mat-header-cell *matHeaderCellDef>Clicks</th>
+          <td mat-cell *matCellDef="let position">{{position.clicks}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef>Edit</th>
+          <td mat-cell *matCellDef="let position">
+            <button mat-icon-button color="primary" (click)="onEdit(position)">
+              <mat-icon>mode</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>Delete</th>
+          <td mat-cell *matCellDef="let position">
+            <button mat-icon-button color="warn" (click)="onDelete(position)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
     </div>
   </div>
 </div>

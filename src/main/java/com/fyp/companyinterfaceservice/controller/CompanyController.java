@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.List;
 import java.util.Set;
 
 import static com.fyp.companyinterfaceservice.constant.SecurityConstants.EXPIRATION_TIME;
@@ -70,11 +71,6 @@ public class CompanyController {
         return userService.verifyAccount(token);
     }
 
-    @PostMapping("/positions/add")
-    public Position addPosition(@RequestBody Position position) {
-        return userService.addPosition(position);
-    }
-
     @GetMapping("/currentUser")
     public User getCurrentUser() {
         return userService.getCurrentUser();
@@ -83,11 +79,6 @@ public class CompanyController {
     @PutMapping("/update")
     public User updateUser(@RequestBody User user) {
         return userService.updateUser(user);
-    }
-
-    @GetMapping("/getCompanyPositions/{companyId}")
-    public Set<Position> getCompanyPositions(@PathVariable Long companyId) {
-        return userService.getCompanyPositions(companyId);
     }
 
 }
