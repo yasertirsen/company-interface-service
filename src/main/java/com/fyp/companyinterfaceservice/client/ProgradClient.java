@@ -1,9 +1,12 @@
 package com.fyp.companyinterfaceservice.client;
 
+import com.fyp.companyinterfaceservice.model.Application;
 import com.fyp.companyinterfaceservice.model.Position;
+import com.fyp.companyinterfaceservice.model.Resume;
 import com.fyp.companyinterfaceservice.model.User;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,6 +58,14 @@ public interface ProgradClient {
 
     @DeleteMapping("/positions/delete/{positionId}")
     ResponseEntity<String> deletePosition(@RequestHeader(AUTH_TOKEN) String bearerToken, @PathVariable Long positionId);
+
+    @GetMapping("/positions/getApplicationsByPositionId")
+    List<Application> getApplications(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam Long positionId);
+
+    // files endpoint
+
+    @GetMapping("/files/getCv")
+    Resume getCv(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam Long applicationId);
 
 //    @PostMapping("/logout")
 //    ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest);

@@ -5,6 +5,7 @@ import {LoginComponent} from "./login/login.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {HomeComponent} from "./home/home.component";
 import {AddJobComponent} from "./add-job/add-job.component";
+import {ViewApplicationsComponent} from "./view-applications/view-applications.component";
 
 const routes: Routes = [
   {
@@ -27,6 +28,9 @@ const routes: Routes = [
   {
     path: 'add-job',
     component: AddJobComponent
+  },{
+    path: 'applications/:positionId',
+    component: ViewApplicationsComponent
   },
   {
     path: '**',

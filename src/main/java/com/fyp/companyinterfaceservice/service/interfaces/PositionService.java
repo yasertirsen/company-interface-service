@@ -1,5 +1,6 @@
 package com.fyp.companyinterfaceservice.service.interfaces;
 
+import com.fyp.companyinterfaceservice.model.Application;
 import com.fyp.companyinterfaceservice.model.Position;
 import org.springframework.http.ResponseEntity;
 
@@ -10,4 +11,6 @@ public interface PositionService {
     Position updatePosition(Position position);
     ResponseEntity<String> deletePosition(Long positionId);
     List<Position> getCompanyPositions(Long id);
+
+    List<Application> getApplications(Long positionId);
 }

@@ -1,5 +1,6 @@
 package com.fyp.companyinterfaceservice.controller;
 
+import com.fyp.companyinterfaceservice.model.Application;
 import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.service.interfaces.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,10 @@ public class PositionController {
     @DeleteMapping("/positions/delete/{positionId}")
     public ResponseEntity<String> delete(@PathVariable Long positionId) {
         return positionService.deletePosition(positionId);
+    }
+
+    @GetMapping("/positions/getPositionApplications/{positionId}")
+    public  List<Application> getApplications(@PathVariable Long positionId) {
+        return positionService.getApplications(positionId);
     }
 }

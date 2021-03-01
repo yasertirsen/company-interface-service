@@ -1,6 +1,7 @@
 package com.fyp.companyinterfaceservice.service;
 
 import com.fyp.companyinterfaceservice.client.ProgradClient;
+import com.fyp.companyinterfaceservice.model.Application;
 import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.service.interfaces.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public List<Position> getCompanyPositions(Long id) {
         return client.getCompanyPositions(bearerToken, id);
+    }
+
+    @Override
+    public List<Application> getApplications(Long positionId) {
+        return client.getApplications(bearerToken, positionId);
     }
 }

@@ -56,4 +56,14 @@ export class PositionService {
     return this.http.get('http://localhost:8081/getCompanyPositions/' + id,
       {headers: this.headers});
   }
+
+  getApplications(positionId: number): Observable<any> {
+    return this.http.get('http://localhost:8081/positions/getPositionApplications/' + positionId,
+      {headers: this.headers});
+  }
+
+  getCv(applicationId: number): Observable<any> {
+    return this.http.get('http://localhost:8081/getCv/' + applicationId,
+      {headers: this.headers, responseType: 'blob'});
+  }
 }

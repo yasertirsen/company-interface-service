@@ -1,0 +1,16 @@
+.applications-table {
+  width: 100%;
+  margin: 10px 10px 10px 10px;
+}
+
+.mat-card-content {
+  padding-bottom: 20px;
+  flex-grow: 1;
+}
+
+.mat-card{
+  flex-direction: column;
+  margin: 10px 10px 10px 10px;
+}
+
+button.link { background:none;border:none; }

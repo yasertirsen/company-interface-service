@@ -37,6 +37,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EditJobDialogComponent } from './home/edit-job-dialog/edit-job-dialog.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { ConfirmDeleteComponent } from './home/confirm-delete/confirm-delete.component';
+import { ViewApplicationsComponent } from './view-applications/view-applications.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ConfirmDeleteComponent } from './home/confirm-delete/confirm-delete.com
     JobTileComponent,
     MatSpinnerOverlayComponent,
     EditJobDialogComponent,
-    ConfirmDeleteComponent
+    ConfirmDeleteComponent,
+    ViewApplicationsComponent
   ],
     imports: [
         BrowserModule,

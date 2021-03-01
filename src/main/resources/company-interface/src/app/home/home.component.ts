@@ -18,7 +18,7 @@ import {ConfirmDeleteComponent} from "./confirm-delete/confirm-delete.component"
 })
 export class HomeComponent implements OnInit {
 
-  displayedColumns: string[] = ['date', 'title', 'location', 'clicks', 'edit', 'delete'];
+  displayedColumns: string[] = ['date', 'title', 'location', 'clicks', 'edit','applications', 'delete'];
   token: string;
   user: UserModel;
   positions: PositionModel[] = null;
