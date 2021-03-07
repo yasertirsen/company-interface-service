@@ -51,11 +51,49 @@
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Requirements</ng-template>
-            <p>Add requirements for position separated by comma</p>
+            <p>Please add the required skills for this position</p>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-chip-list #chipList aria-label="Skills selection">
+                <mat-chip
+                  color="primary"
+                  *ngFor="let skill of skills"
+                  [selectable]="selectable"
+                  [removable]="removable"
+                  (removed)="removeSkill(skill)">
+                  {{skill.skillName}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input
+                  class="full-width"
+                  placeholder="Skills"
+                  [formControl]="skillsCtrl"
+                  [matAutocomplete]="auto"
+                  [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  (matChipInputTokenEnd)="addSkill($event)">
+              </mat-chip-list>
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedSkill($event)">
+                <mat-option *ngFor="let skill of filteredSkills | async" [value]="skill.skillName">
+                  {{skill.skillName}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Priority</ng-template>
             <mat-form-field>
-              <mat-label>Skills</mat-label>
-              <input matInput formControlName="firstCtrl" placeholder="Adobe suite, Angular..." required
-                     [(ngModel)]="requirementsText">
+              <mat-label>Job Type</mat-label>
+              <mat-select (selectionChange)="selectedType($event)" required>
+                <mat-option value="P">Priority</mat-option>
+                <mat-option value="B">Basic</mat-option>
+              </mat-select>
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>

@@ -19,12 +19,14 @@ export class PositionService {
   addPosition(position: PositionModel): Observable<any>{
     return this.http.post('http://localhost:8081/positions/add',
       {
+        "positionId": position.positionId,
         "title": position.title,
         "description": position.description,
         "location": position.location,
         "date": position.date,
         "salary": position.salary,
         "clicks": position.clicks,
+        "priority": position.priority,
         "company": position.company,
         "requirements": position.requirements
       },
@@ -41,6 +43,7 @@ export class PositionService {
         "date": position.date,
         "salary": position.salary,
         "clicks": position.clicks,
+        "priority": position.priority,
         "company": position.company,
         "requirements": position.requirements
       },

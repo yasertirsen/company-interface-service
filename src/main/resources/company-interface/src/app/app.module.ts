@@ -38,6 +38,9 @@ import { EditJobDialogComponent } from './home/edit-job-dialog/edit-job-dialog.c
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { ConfirmDeleteComponent } from './home/confirm-delete/confirm-delete.component';
 import { ViewApplicationsComponent } from './view-applications/view-applications.component';
+import { NgxStripeModule } from 'ngx-stripe';
+import { StripePaymentComponent } from './stripe-payment/stripe-payment.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -52,37 +55,40 @@ import { ViewApplicationsComponent } from './view-applications/view-applications
     MatSpinnerOverlayComponent,
     EditJobDialogComponent,
     ConfirmDeleteComponent,
-    ViewApplicationsComponent
+    ViewApplicationsComponent,
+    StripePaymentComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        FontAwesomeModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        LayoutModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatCardModule,
-        NgxWebstorageModule.forRoot(),
-        BrowserAnimationsModule,
-        ToastrModule.forRoot(),
-        NgbModule,
-        MatStepperModule,
-        ReactiveFormsModule,
-        MatTableModule,
-        MatProgressSpinnerModule,
-        MatDialogModule,
-        MatChipsModule,
-        MatSnackBarModule,
-        MatAutocompleteModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    FontAwesomeModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    NgxWebstorageModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgbModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatChipsModule,
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    NgxStripeModule.forRoot('pk_test_51IR1L4GPvpv5kncLxVVXUDzx4vG2xCUB6nPRrlsoYTGas4F3JhGzA1QIPb5KhxcrLhv1VHm9B4pRgSvX4x9HTXdT00hwEm9Fning'),
+    MatSelectModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
