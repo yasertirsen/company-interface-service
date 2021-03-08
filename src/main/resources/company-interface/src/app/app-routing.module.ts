@@ -7,6 +7,7 @@ import {HomeComponent} from "./home/home.component";
 import {AddJobComponent} from "./add-job/add-job.component";
 import {ViewApplicationsComponent} from "./view-applications/view-applications.component";
 import {StripePaymentComponent} from "./stripe-payment/stripe-payment.component";
+import {JobStatsComponent} from "./job-stats/job-stats.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'payment',
     component: StripePaymentComponent
+  },
+  {
+    path: 'stats/:positionId',
+    component: JobStatsComponent
   },
   {
     path: '**',

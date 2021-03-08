@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 public class Skill {
     private long skillId;
     private String skillName;
-    private Industry industry;
+    private String industry;
 }
-

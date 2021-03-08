@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserModel} from "../models/user.model";
 import {UserService} from "../service/user.service";
-import {LocalStorageService} from "ngx-webstorage";
 import {PositionModel} from "../models/position.model";
 import {PositionService} from "../service/position.service";
 import {MatTableDataSource} from "@angular/material/table";
@@ -10,6 +9,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {EditJobDialogComponent} from "./edit-job-dialog/edit-job-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ConfirmDeleteComponent} from "./confirm-delete/confirm-delete.component";
+import {StudentService} from "../service/student.service";
 
 @Component({
   selector: 'app-home',
@@ -18,17 +18,15 @@ import {ConfirmDeleteComponent} from "./confirm-delete/confirm-delete.component"
 })
 export class HomeComponent implements OnInit {
 
-  displayedColumns: string[] = ['date', 'title', 'location', 'clicks', 'edit','applications', 'delete'];
-  token: string;
+  displayedColumns: string[] = ['date', 'title', 'location', 'clicks', 'statistics','applications', 'edit', 'delete'];
   user: UserModel;
   positions: PositionModel[] = null;
   datasource: any
   loading = true;
 
-  constructor(private userService: UserService, private positionService: PositionService, private localStorage: LocalStorageService,
-              private router : Router, private dialog: MatDialog, private _snackBar: MatSnackBar) {
-    this.token = this.localStorage.retrieve('token');
-    this.userService.getCurrentUser(this.token).subscribe(user => {
+  constructor(private userService: UserService, private positionService: PositionService,
+              private router : Router, private dialog: MatDialog, private _snackBar: MatSnackBar, private studentService: StudentService) {
+    this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
       this.positionService.getCompanyPositions(this.user.companyId).subscribe(data => {
         this.positions = data;
@@ -38,7 +36,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  onDelete(position: PositionModel) {
+  onStats(positionId: number): void {
+    this.router.navigateByUrl('/stats/' + positionId)
+  }
+
+  onApplications(positionId: number): void {
+    this.router.navigateByUrl('/applications/' + positionId);
+  }
+
+  onDelete(position: PositionModel): void {
     const deleteDialog =
       this.dialog.open(ConfirmDeleteComponent, {
         width: '500px'
@@ -60,7 +66,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  onEdit(position: PositionModel) {
+  onEdit(position: PositionModel): void {
     const editDialog =
       this.dialog.open(EditJobDialogComponent, {
         width: '500px',

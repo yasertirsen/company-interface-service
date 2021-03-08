@@ -2,21 +2,23 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserModel} from "../models/user.model";
-import {ProfileModel} from "../models/profile.model";
+import {LocalStorageService} from "ngx-webstorage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  headers: any
+  constructor(private http: HttpClient, private localStorage: LocalStorageService) {
+    this.headers = new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization': `Bearer ${this.localStorage.retrieve('token')}`
+    });
+  }
 
-  constructor(private http: HttpClient) { }
-
-  getCurrentUser(token: string): Observable<any>{
+  getCurrentUser(): Observable<any>{
     return this.http.get('http://localhost:8081/currentUser', {
-      headers: new HttpHeaders({
-        'Content-type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      })
+      headers: this.headers
     });
   }
 
@@ -37,6 +39,7 @@ export class UserService {
         "isLocked": user.isLocked,
         "enabled": user.enabled,
         "profile": user.profile
-      });
+      },
+      {headers: this.headers});
   }
 }

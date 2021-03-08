@@ -1,9 +1,6 @@
 package com.fyp.companyinterfaceservice.client;
 
-import com.fyp.companyinterfaceservice.model.Application;
-import com.fyp.companyinterfaceservice.model.Position;
-import com.fyp.companyinterfaceservice.model.Resume;
-import com.fyp.companyinterfaceservice.model.User;
+import com.fyp.companyinterfaceservice.model.*;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.core.io.InputStreamResource;
@@ -62,10 +59,18 @@ public interface ProgradClient {
     @GetMapping("/positions/getApplicationsByPositionId")
     List<Application> getApplications(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam Long positionId);
 
+    @GetMapping("/positions/all")
+    List<Position> getAllPositions(@RequestHeader(AUTH_TOKEN) String bearerToken);
+
     // files endpoint
 
     @GetMapping("/files/getCv")
     Resume getCv(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam Long applicationId);
+
+    // students endpoint
+
+    @GetMapping("/students/findByEmail")
+    Student getStudent(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam String email);
 
 //    @PostMapping("/logout")
 //    ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest);

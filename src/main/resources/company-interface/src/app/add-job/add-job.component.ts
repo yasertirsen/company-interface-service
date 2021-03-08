@@ -52,10 +52,9 @@ export class AddJobComponent implements OnInit {
   @ViewChild('skillInput') skillInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
-  constructor(private _formBuilder: FormBuilder, private localStorage: LocalStorageService,
+  constructor(private _formBuilder: FormBuilder,
               private userService: UserService, private positionService: PositionService, private router: Router) {
-    this.token = this.localStorage.retrieve('token');
-    this.userService.getCurrentUser(this.token).subscribe(user => {
+    this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
       this.position.company = this.user;
       this.loading = false;

@@ -41,6 +41,8 @@ import { ViewApplicationsComponent } from './view-applications/view-applications
 import { NgxStripeModule } from 'ngx-stripe';
 import { StripePaymentComponent } from './stripe-payment/stripe-payment.component';
 import {MatSelectModule} from "@angular/material/select";
+import { JobStatsComponent } from './job-stats/job-stats.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import {MatSelectModule} from "@angular/material/select";
     EditJobDialogComponent,
     ConfirmDeleteComponent,
     ViewApplicationsComponent,
-    StripePaymentComponent
+    StripePaymentComponent,
+    JobStatsComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,8 @@ import {MatSelectModule} from "@angular/material/select";
     MatSnackBarModule,
     MatAutocompleteModule,
     NgxStripeModule.forRoot('pk_test_51IR1L4GPvpv5kncLxVVXUDzx4vG2xCUB6nPRrlsoYTGas4F3JhGzA1QIPb5KhxcrLhv1VHm9B4pRgSvX4x9HTXdT00hwEm9Fning'),
-    MatSelectModule
+    MatSelectModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,88 @@
+<app-mat-spinner-overlay
+  overlay="true"
+  *ngIf="loading === true">
+</app-mat-spinner-overlay>
+
+<div class="container" *ngIf="loading === false">
+  <div class="row">
+    <div class="offset-2"></div>
+    <div class="col-md-12">
+      <mat-card class="full-width">
+        <mat-card-title>
+          Job Post Statistics
+        </mat-card-title>
+        <mat-card-subtitle>
+          This page contains certain statistics about the applicants on this job post.
+        </mat-card-subtitle>
+        <hr>
+        <mat-card-content>
+          <table class="full-width">
+            <td width="50%">
+              <div style="display: block;">
+                <h3 class="mat-h3"><strong>Gender Statistics</strong></h3>
+                <h4 class="center mat-h4" *ngIf="genderData.every(isBelowThreshold)">No Data</h4>
+                <canvas  baseChart
+                         *ngIf="!raceData.every(isBelowThreshold)"
+                         [data]="genderData"
+                         [labels]="genderLabels"
+                         [chartType]="pieChartType"
+                         [options]="pieChartOptions"
+                         [colors] ="genderColors"
+                         [legend]="pieChartLegend">
+                </canvas>
+              </div>
+            </td>
+            <td width="50%">
+              <div style="display: block;">
+                <h3 class="mat-h3"><strong>Course Statistics</strong></h3>
+                <h4 class="center mat-h4" *ngIf="coursesData.every(isBelowThreshold)">No Data</h4>
+                <canvas  baseChart
+                         *ngIf="!raceData.every(isBelowThreshold)"
+                         [data]="coursesData"
+                         [labels]="coursesLabels"
+                         [chartType]="pieChartType"
+                         [options]="pieChartOptions"
+                         [colors] ="ageColors"
+                         [legend]="pieChartLegend">
+                </canvas>
+              </div>
+            </td>
+          </table>
+          <hr>
+          <table class="full-width">
+            <td width="50%">
+              <div style="display: block;">
+                <h3 class="mat-h3"><strong>Age Statistics</strong></h3>
+                <h4 class="center mat-h4" *ngIf="ageData.every(isBelowThreshold)">No Data</h4>
+                <canvas baseChart
+                        *ngIf="!raceData.every(isBelowThreshold)"
+                        [data]="ageData"
+                        [labels]="ageLabels"
+                        [chartType]="pieChartType"
+                        [options]="pieChartOptions"
+                        [colors]="ageColors"
+                        [legend]="pieChartLegend">
+                </canvas>
+              </div>
+            </td>
+            <td width="50%">
+              <div style="display: block;">
+                <h3 class="mat-h3"><strong>Race Statistics</strong></h3>
+                <h4 class="mat-h4" *ngIf="raceData.every(isBelowThreshold)">No Data</h4>
+                <canvas baseChart
+                        *ngIf="!raceData.every(isBelowThreshold)"
+                        [data]="raceData"
+                        [labels]="raceLabels"
+                        [chartType]="pieChartType"
+                        [options]="pieChartOptions"
+                        [colors]="raceColors"
+                        [legend]="pieChartLegend">
+                </canvas>
+              </div>
+            </td>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

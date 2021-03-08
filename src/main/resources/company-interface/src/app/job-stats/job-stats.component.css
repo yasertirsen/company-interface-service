@@ -1,0 +1,24 @@
+.full-width {
+  width: 100%;
+}
+
+.container {
+  padding-top: 20px;
+}
+
+.mat-card-content {
+  padding-bottom: 20px;
+  flex-grow: 1;
+}
+
+.mat-card{
+  flex-direction: column;
+  margin: 10px 10px 10px 10px;
+  text-align: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
