@@ -1,5 +1,6 @@
 package com.fyp.companyinterfaceservice.controller;
 
+import com.fyp.companyinterfaceservice.exceptions.ProgradException;
 import com.fyp.companyinterfaceservice.model.Application;
 import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.service.interfaces.PositionService;
@@ -24,7 +25,7 @@ public class PositionController {
     }
 
     @PostMapping("/positions/add")
-    public Position addPosition(@RequestBody Position position) {
+    public Position addPosition(@RequestBody Position position) throws ProgradException {
         return positionService.addPosition(position);
     }
 

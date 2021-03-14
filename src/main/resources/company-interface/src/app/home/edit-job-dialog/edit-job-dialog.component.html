@@ -47,6 +47,10 @@
     <mat-label>Description</mat-label>
     <textarea matInput [(ngModel)]="position.description"></textarea>
   </mat-form-field>
+  <ngx-stripe-card
+    [options]="cardOptions"
+    [elementsOptions]="elementsOptions"
+  ></ngx-stripe-card>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>

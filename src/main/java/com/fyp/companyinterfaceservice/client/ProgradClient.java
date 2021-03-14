@@ -42,6 +42,9 @@ public interface ProgradClient {
     @Headers({"Content-Type: application/json"})
     ResponseEntity<User> findByToken(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam String token);
 
+    @GetMapping("/companies/mailingList")
+    MailingList getMailingList(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam Long companyId);
+
     // positions endpoint
 
     @PostMapping("/positions/add")
@@ -71,7 +74,4 @@ public interface ProgradClient {
 
     @GetMapping("/students/findByEmail")
     Student getStudent(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam String email);
-
-//    @PostMapping("/logout")
-//    ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest);
 }
