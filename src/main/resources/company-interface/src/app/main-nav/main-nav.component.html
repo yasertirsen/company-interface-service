@@ -11,10 +11,8 @@
       <a mat-list-item routerLink="/settings" (click)="drawer.toggle()">
         <mat-icon>settings</mat-icon>Settings</a>
       <mat-divider></mat-divider>
-      <a mat-list-item routerLink="/jobs" (click)="drawer.toggle()">
-        <mat-icon>work</mat-icon>Jobs</a>
-      <a mat-list-item routerLink="/companies" (click)="drawer.toggle()">
-        <mat-icon>business</mat-icon>Companies</a>
+      <a mat-list-item (click)="onLogout(drawer)">
+        <mat-icon>logout</mat-icon>Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -27,10 +25,10 @@
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+      </div>
       <a routerLink="/home">
         <!--        <img src="https://i.imgur.com/khTyWq7.png" alt="Prograd icon">-->
         <span class="mat-display-1"><b>prograd employers</b></span></a>
-      </div>
       <span class="spacer"></span>
       <mat-nav-list>
         <a matLine *ngIf="activeRoute === '/login'" routerLink="/register">Register</a>

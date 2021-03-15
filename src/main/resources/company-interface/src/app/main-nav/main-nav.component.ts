@@ -3,6 +3,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {MatSidenav} from "@angular/material/sidenav";
+import {UserService} from "../service/user.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-main-nav',
@@ -11,6 +14,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 })
 export class MainNavComponent {
   activeRoute: string;
+  isAuthenticated: boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -19,7 +23,7 @@ export class MainNavComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, private activatedRouter: ActivatedRoute,
-              private router: Router) {
+              private router: Router, private userService: UserService, private _snackBar: MatSnackBar) {
     this.router.events.subscribe((event) => {
       if(event instanceof NavigationEnd && event.url) {
         this.activeRoute = event.url;
@@ -27,4 +31,12 @@ export class MainNavComponent {
     });
   }
 
+  onLogout(drawer: MatSidenav) {
+    drawer.toggle();
+    this.userService.logout();
+    this._snackBar.open('Logout successful', 'Close', {
+      duration: 3000
+    });
+    this.router.navigateByUrl('/login');
+  }
 }

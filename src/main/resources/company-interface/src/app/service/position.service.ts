@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {PositionModel} from "../models/position.model";
 import {LocalStorageService} from "ngx-webstorage";
@@ -8,13 +8,8 @@ import {LocalStorageService} from "ngx-webstorage";
   providedIn: 'root'
 })
 export class PositionService {
-  headers: any;
 
-  constructor(private localStorage: LocalStorageService, private http: HttpClient) {
-    this.headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.localStorage.retrieve('token')}`
-    });
-  }
+  constructor(private localStorage: LocalStorageService, private http: HttpClient) {}
 
   addPosition(position: PositionModel): Observable<any>{
     return this.http.post('http://localhost:8081/positions/add',
@@ -29,8 +24,7 @@ export class PositionService {
         "priority": position.priority,
         "company": position.company,
         "requirements": position.requirements
-      },
-      {headers: this.headers});
+      });
   }
 
   updatePosition(position: PositionModel): Observable<any>{
@@ -46,27 +40,23 @@ export class PositionService {
         "priority": position.priority,
         "company": position.company,
         "requirements": position.requirements
-      },
-      {headers: this.headers});
+      });
   }
 
   deletePosition(positionId: number): Observable<any>{
-    return this.http.delete('http://localhost:8081/positions/delete/' + positionId,
-      {headers: this.headers});
+    return this.http.delete('http://localhost:8081/positions/delete/' + positionId);
   }
 
   getCompanyPositions(id: number): Observable<any>{
-    return this.http.get('http://localhost:8081/getCompanyPositions/' + id,
-      {headers: this.headers});
+    return this.http.get('http://localhost:8081/getCompanyPositions/' + id);
   }
 
   getApplications(positionId: number): Observable<any> {
-    return this.http.get('http://localhost:8081/positions/getPositionApplications/' + positionId,
-      {headers: this.headers});
+    return this.http.get('http://localhost:8081/positions/getPositionApplications/' + positionId);
   }
 
   getCv(applicationId: number): Observable<any> {
     return this.http.get('http://localhost:8081/getCv/' + applicationId,
-      {headers: this.headers, responseType: 'blob'});
+      {responseType: 'blob'});
   }
 }

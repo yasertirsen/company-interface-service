@@ -2,11 +2,12 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginRequest} from "../models/login-request-payload";
 import {LoginResponse} from "../models/login-response-payload";
-import {map, tap} from "rxjs/operators";
+import {first, map, tap} from "rxjs/operators";
 import {LocalStorageService} from "ngx-webstorage";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgbAlert} from "@ng-bootstrap/ng-bootstrap";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserService} from "../service/user.service";
 
 @Component({
   selector: 'app-login',
@@ -19,10 +20,11 @@ export class LoginComponent implements OnInit {
     email:'',
     password: ''
   };
+  returnUrl: string;
 
   constructor(private client: HttpClient, private localStorage: LocalStorageService,
               private activatedRoute: ActivatedRoute, private router: Router,
-              private _snackBar: MatSnackBar) { }
+              private _snackBar: MatSnackBar, private userService: UserService) { }
 
   ngOnInit(): void {
 
@@ -34,26 +36,20 @@ export class LoginComponent implements OnInit {
             duration: 5000
           });
         }
+        this.returnUrl = params.returnUrl? params.returnUrl: '/home'
       });
   }
 
   loginCompany(): void {
-    let url = 'http://localhost:8081/login';
-    this.client.post<LoginResponse>(url, this.model).pipe(map(data => {
-      this.localStorage.store('token', data.token);
-      this.localStorage.store('email', data.email);
-      this.localStorage.store('expiresIn', data.expiresIn);
-    })).subscribe(data => {
-      this.router.navigateByUrl('/home');
-    }, error => {
-      this._snackBar.open('Login Failed. Please check your credentials and try again', 'Close', {
-        duration: 5000
+    this.userService.login(this.model)
+      .pipe(first())
+      .subscribe(data => {
+        this.router.navigateByUrl(this.returnUrl);
+      }, error => {
+        this._snackBar.open('Login Failed. Please check your credentials and try again.', 'Close', {
+          duration: 5000,
+        });
       });
-    });
-  }
-
-  getJwtToken() {
-    return this.localStorage.retrieve('token');
   }
 
   getEmail() {

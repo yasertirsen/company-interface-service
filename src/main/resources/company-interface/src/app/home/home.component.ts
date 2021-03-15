@@ -25,14 +25,12 @@ export class HomeComponent implements OnInit {
   loading = true;
 
   constructor(private userService: UserService, private positionService: PositionService,
-              private router : Router, private dialog: MatDialog, private _snackBar: MatSnackBar, private studentService: StudentService) {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.user = user;
-      this.positionService.getCompanyPositions(this.user.companyId).subscribe(data => {
-        this.positions = data;
-        this.datasource = new MatTableDataSource(data);
-        this.loading = false;
-      });
+              private router : Router, private dialog: MatDialog, private _snackBar: MatSnackBar) {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.positionService.getCompanyPositions(this.user.companyId).subscribe(data => {
+      this.positions = data;
+      this.datasource = new MatTableDataSource(data);
+      this.loading = false;
     });
   }
 

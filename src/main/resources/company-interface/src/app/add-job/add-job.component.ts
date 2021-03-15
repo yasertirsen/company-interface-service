@@ -2,7 +2,6 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
-import {LocalStorageService} from "ngx-webstorage";
 import {PositionModel} from "../models/position.model";
 import {UserModel} from "../models/user.model";
 import {SkillModel} from "../models/skill.model";
@@ -54,11 +53,9 @@ export class AddJobComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
               private userService: UserService, private positionService: PositionService, private router: Router) {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.user = user;
-      this.position.company = this.user;
-      this.loading = false;
-    });
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.position.company = this.user;
+    this.loading = false;
     this.filteredSkills = this.skillsCtrl.valueChanges.pipe(
       map((skill: string | null) => skill ? this._filter(skill) : this.allSkills.slice()));
   }

@@ -7,26 +7,20 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class StudentService {
-  headers: any;
 
-  constructor(private http: HttpClient, private localStorage: LocalStorageService) {
-    this.headers = new HttpHeaders({
-      'Content-type': 'application/json',
-      'Authorization': `Bearer ${this.localStorage.retrieve('token')}`
-    });
-  }
+  constructor(private http: HttpClient, private localStorage: LocalStorageService) {}
 
   getStudent(email: string): Observable<any> {
     return this.http.get('http://localhost:8081/getStudent',
-      {headers: this.headers,
-        params: new HttpParams().set("email", email)});
+      {
+        params: new HttpParams().set("email", email)
+      });
   }
 
   getStats(emails): Observable<any> {
     return this.http.post('http://localhost:8081/getStats',
       {
         "emails": emails
-      },
-      {headers: this.headers});
+      });
   }
 }

@@ -8,6 +8,7 @@ import {AddJobComponent} from "./add-job/add-job.component";
 import {ViewApplicationsComponent} from "./view-applications/view-applications.component";
 import {StripePaymentComponent} from "./stripe-payment/stripe-payment.component";
 import {JobStatsComponent} from "./job-stats/job-stats.component";
+import {AuthGuard} from "./_guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -25,22 +26,27 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'add-job',
-    component: AddJobComponent
+    component: AddJobComponent,
+    canActivate: [AuthGuard]
   },{
     path: 'applications/:positionId',
-    component: ViewApplicationsComponent
+    component: ViewApplicationsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'payment',
-    component: StripePaymentComponent
+    component: StripePaymentComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'stats/:positionId',
-    component: JobStatsComponent
+    component: JobStatsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

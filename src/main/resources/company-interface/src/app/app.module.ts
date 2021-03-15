@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,6 +43,8 @@ import { StripePaymentComponent } from './stripe-payment/stripe-payment.componen
 import {MatSelectModule} from "@angular/material/select";
 import { JobStatsComponent } from './job-stats/job-stats.component';
 import { ChartsModule } from 'ng2-charts';
+import {AuthGuard} from "./_guards/auth.guard";
+import {TokenInterceptor} from "./shared/interceptor/TokenInterceptor";
 
 @NgModule({
   declarations: [
@@ -93,7 +95,14 @@ import { ChartsModule } from 'ng2-charts';
     MatSelectModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
