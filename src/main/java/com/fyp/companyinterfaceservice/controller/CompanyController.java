@@ -52,7 +52,6 @@ public class CompanyController {
             authenticate(loggedUser.getEmail(), loggedUser.getPassword());
             UserPrincipal userPrincipal = new UserPrincipal(loggedUser);
 
-            loggedUser.setPassword(StringUtils.EMPTY);
             loggedUser.setExpiresIn(EXPIRATION_TIME);
             loggedUser.setToken(jwtTokenProvider.generateJwtToken(userPrincipal));
 
@@ -80,5 +79,12 @@ public class CompanyController {
     public User updateUser(@RequestBody User user) {
         return userService.updateUser(user);
     }
+
+//    @PostMapping("/changePassword")
+//    public User changePassword(@RequestParam String email, @RequestParam String password) {
+//        User user = this.userService.findUserByEmail(email);
+//        user.setPassword(passwordEncoder.encode(password));
+//        return this.userService.updateUser(user);
+//    }
 
 }

@@ -37,6 +37,5 @@ export class MainNavComponent {
     this._snackBar.open('Logout successful', 'Close', {
       duration: 3000
     });
-    this.router.navigateByUrl('/login');
   }
 }

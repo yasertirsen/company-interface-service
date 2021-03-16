@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Archive Position</h1>
+<div class="content" mat-dialog-content>
+  <p class="mat-h3">Please choose candidate who was hired</p>
+  <form>
+    <mat-form-field style="width: 100%" appearance="outline">
+      <mat-label>Candidate</mat-label>
+      <mat-select [(ngModel)]="selectedCandidate" name="food">
+        <mat-option *ngFor="let candidate of candidates" [value]="candidate.studentId">
+          {{candidate.firstName}} {{candidate.surname}} - {{candidate.profile.course.university}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="'cancel'">Cancel</button>
+  <button mat-button (click)="onDone()" cdkFocusInitial>Done</button>
+</div>

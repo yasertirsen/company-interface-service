@@ -45,6 +45,10 @@ import { JobStatsComponent } from './job-stats/job-stats.component';
 import { ChartsModule } from 'ng2-charts';
 import {AuthGuard} from "./_guards/auth.guard";
 import {TokenInterceptor} from "./shared/interceptor/TokenInterceptor";
+import { ChooseCandidateDialogComponent } from './home/choose-candidate-dialog/choose-candidate-dialog.component';
+import { ArchivedJobsComponent } from './archived-jobs/archived-jobs.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -61,7 +65,9 @@ import {TokenInterceptor} from "./shared/interceptor/TokenInterceptor";
     ConfirmDeleteComponent,
     ViewApplicationsComponent,
     StripePaymentComponent,
-    JobStatsComponent
+    JobStatsComponent,
+    ChooseCandidateDialogComponent,
+    ArchivedJobsComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +99,9 @@ import {TokenInterceptor} from "./shared/interceptor/TokenInterceptor";
     MatAutocompleteModule,
     NgxStripeModule.forRoot('pk_test_51IR1L4GPvpv5kncLxVVXUDzx4vG2xCUB6nPRrlsoYTGas4F3JhGzA1QIPb5KhxcrLhv1VHm9B4pRgSvX4x9HTXdT00hwEm9Fning'),
     MatSelectModule,
-    ChartsModule
+    ChartsModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     AuthGuard,

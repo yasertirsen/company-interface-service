@@ -22,6 +22,7 @@ export class PositionService {
         "salary": position.salary,
         "clicks": position.clicks,
         "priority": position.priority,
+        "archive": position.archive,
         "company": position.company,
         "requirements": position.requirements
       });
@@ -38,6 +39,7 @@ export class PositionService {
         "salary": position.salary,
         "clicks": position.clicks,
         "priority": position.priority,
+        "archive": position.archive,
         "company": position.company,
         "requirements": position.requirements
       });

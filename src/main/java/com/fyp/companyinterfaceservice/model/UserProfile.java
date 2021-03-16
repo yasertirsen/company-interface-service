@@ -11,8 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserProfile {
-
     private long profileId;
-    Set<Student> hiredStudents;
+    Set<Long> hiredStudents;
     private List<Review> reviews;
 }

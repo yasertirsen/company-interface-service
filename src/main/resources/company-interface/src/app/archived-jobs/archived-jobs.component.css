@@ -1,0 +1,53 @@
+.container {
+  padding-top: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.job-search {
+  font-size: 15px;
+}
+
+.profile-img {
+  max-width: 25%;
+  padding-left: 10px;
+}
+
+.member-info h3{
+  font-weight: bold;
+}
+
+.mat-card-subtitle {
+  font-weight: bold;
+  font-size: large;
+  color: black;
+}
+
+.mat-card-content {
+  padding-bottom: 20px;
+  flex-grow: 1;
+}
+
+.mat-card{
+  flex-direction: column;
+  margin: 10px 10px 10px 10px;
+}
+
+.mat-card-header {
+  flex-shrink: 0;
+}
+
+.step-btn {
+  flex: 1 1 auto;
+  justify-content: end;
+}
+
+.positions-table {
+  width: 100%;
+  margin: 10px 10px 10px 10px;
+}
+
+
+

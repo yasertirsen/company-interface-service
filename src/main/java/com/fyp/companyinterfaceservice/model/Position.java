@@ -18,6 +18,7 @@ public class Position {
     private String url;
     private int clicks;
     private boolean priority;
+    private boolean archive;
     private User company;
     private Set<Skill> requirements;
 }

@@ -9,6 +9,7 @@ import {ViewApplicationsComponent} from "./view-applications/view-applications.c
 import {StripePaymentComponent} from "./stripe-payment/stripe-payment.component";
 import {JobStatsComponent} from "./job-stats/job-stats.component";
 import {AuthGuard} from "./_guards/auth.guard";
+import {ArchivedJobsComponent} from "./archived-jobs/archived-jobs.component";
 
 const routes: Routes = [
   {
@@ -46,6 +47,11 @@ const routes: Routes = [
   {
     path: 'stats/:positionId',
     component: JobStatsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'archive',
+    component: ArchivedJobsComponent,
     canActivate: [AuthGuard]
   },
   {

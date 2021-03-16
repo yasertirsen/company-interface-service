@@ -1,8 +1,9 @@
-<h1 mat-dialog-title>Delete Position</h1>
+<h1 mat-dialog-title>Archive Position</h1>
 <div class="content" mat-dialog-content>
-  <p class="mat-h3">Are you sure you want to delete this position permanently?</p>
+  <p class="mat-h3">Were you successful in finding a candidate through Prograd?</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="'no'">Cancel</button>
-  <button mat-button [mat-dialog-close]="'yes'" cdkFocusInitial>Delete</button>
+  <button mat-button [mat-dialog-close]="'cancel'">Cancel</button>
+  <button mat-button [mat-dialog-close]="'no'">No</button>
+  <button mat-button [mat-dialog-close]="'yes'" cdkFocusInitial>Yes</button>
 </div>

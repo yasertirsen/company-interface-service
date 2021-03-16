@@ -44,6 +44,7 @@ export class AddJobComponent implements OnInit {
     salary: 0,
     clicks: 0,
     priority: null,
+    archive: false,
     company: null,
     requirements: []
   };
