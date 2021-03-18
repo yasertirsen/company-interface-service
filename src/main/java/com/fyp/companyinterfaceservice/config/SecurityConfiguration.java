@@ -1,4 +1,4 @@
-package com.fyp.companyinterfaceservice.security;
+package com.fyp.companyinterfaceservice.config;
 
 import com.fyp.companyinterfaceservice.filter.JwtAccessDeniedHandler;
 import com.fyp.companyinterfaceservice.filter.JwtAuthenticationEntryPoint;
