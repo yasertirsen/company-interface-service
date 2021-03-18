@@ -1,45 +1,43 @@
-<div class="container">
-  <div class="row">
-    <div class="offset-3"></div>
-    <div class="col-md-6">
+<mat-card class="centered">
+  <div
+    gdAreas="header header | content content"
+    gdGap="16px"
+    gdRows="auto auto auto">
 
-      <div class="login-header">
-        <h4 class="text-center">Login</h4>
-        <p class="text-center">Welcome back!</p>
-        <hr>
-      </div>
-
-      <div class="login-form">
-        <mat-card-content>
-          <form (ngSubmit)="loginCompany()" novalidate>
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Email</mat-label>
-              <input matInput
-                     placeholder="Email"
-                     name="email"
-                     [(ngModel)]="model.email"
-                     required>
-            </mat-form-field>
-
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Password</mat-label>
-              <input matInput
-                     placeholder="Password"
-                     name="password"
-                     type="password"
-                     [(ngModel)]="model.password"
-                     required>
-            </mat-form-field>
-            <button mat-raised-button type="submit" color="accent">
-              <i class="fa fa-user"></i>
-              <span> Login</span>
-            </button>
-          </form>
-        </mat-card-content>
-      </div>
+    <div gdArea="header">
+      <div><span class="mat-display-1"><b>prograd employers</b></span></div>
+      <hr>
     </div>
-    <div class="offset-3"></div>
+
+    <div gdArea="content">
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <form (ngSubmit)="loginCompany()" novalidate>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput
+                   placeholder="Email"
+                   name="email"
+                   [(ngModel)]="model.email"
+                   required>
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput
+                   placeholder="Password"
+                   name="password"
+                   [type]="hide ? 'password' : 'text'"
+                   [(ngModel)]="model.password"
+                   required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit"><mat-icon>login</mat-icon>Login</button>
+        </form>
+      </mat-card-content>
+    </div>
   </div>
-</div>
+</mat-card>
 
 

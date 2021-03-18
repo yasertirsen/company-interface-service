@@ -1,11 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginRequest} from "../models/login-request-payload";
-import {LoginResponse} from "../models/login-response-payload";
-import {first, map, tap} from "rxjs/operators";
+import {first} from "rxjs/operators";
 import {LocalStorageService} from "ngx-webstorage";
 import {ActivatedRoute, Router} from "@angular/router";
-import {NgbAlert} from "@ng-bootstrap/ng-bootstrap";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {UserService} from "../service/user.service";
 
@@ -15,7 +13,7 @@ import {UserService} from "../service/user.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  hide = true;
   model: LoginRequest = {
     email:'',
     password: ''

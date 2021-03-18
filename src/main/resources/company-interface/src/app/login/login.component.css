@@ -1,14 +1,22 @@
-.login-form{
-  height: 30vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .full-width {
   width: 100%;
 }
 
-.login-header h4 {
-  font-weight: bold;
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+mat-card {
+  text-align: center;
+  width: 500px;
+}
+
+.logo {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -15%);
 }

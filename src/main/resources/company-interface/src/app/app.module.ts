@@ -49,6 +49,8 @@ import { ChooseCandidateDialogComponent } from './home/choose-candidate-dialog/c
 import { ArchivedJobsComponent } from './archived-jobs/archived-jobs.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from "@angular/material/sort";
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
@@ -101,7 +103,8 @@ import {MatSortModule} from "@angular/material/sort";
     MatSelectModule,
     ChartsModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    FlexLayoutModule
   ],
   providers: [
     AuthGuard,

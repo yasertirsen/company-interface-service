@@ -1,84 +1,76 @@
-<div class="container">
-  <div class="row">
-    <div class="offset-3"></div>
-    <div class="col-md-6">
-      <div class="create-account">
-        <h4 class="text-center">Create Account</h4>
-        <p class="text-center">Get started with your Prograd Employers account!</p>
-        <hr>
-      </div>
-      <div class="register-form">
-        <mat-card-content>
-          <form (ngSubmit)="registerCompany()" novalidate>
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Company</mat-label>
-              <input matInput
-                     placeholder="Company"
-                     name="company"
-                     [(ngModel)]="user.name"
-                     required>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Email</mat-label>
-              <input matInput
-                     placeholder="Email"
-                     name="email"
-                     [(ngModel)]="user.email"
-                     required email>
-
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Password</mat-label>
-              <input matInput
-                     placeholder="Password"
-                     name="password"
-                     type="password"
-                     [(ngModel)]="user.password"
-                     required>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Company Website</mat-label>
-              <input matInput
-                     placeholder="Company Website Link"
-                     name="company-url"
-                     [(ngModel)]="user.companyUrl"
-                     required>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>HR Contact Name</mat-label>
-              <input matInput
-                     placeholder="HR Contact Name"
-                     name="recruiter"
-                     [(ngModel)]="user.recruiter"
-                     required>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>HR Contact Number</mat-label>
-              <input matInput
-                     placeholder="Phone Number"
-                     name="recruiter"
-                     [(ngModel)]="user.recruiterPhone"
-                     required>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Company Address</mat-label>
-              <input matInput
-                     placeholder="Company Address"
-                     name="recruiter"
-                     [(ngModel)]="user.address"
-                     required>
-            </mat-form-field>
-
-            <button mat-raised-button type="submit" color="accent">
-              <i class="fa fa-user"></i>
-              <span> Register</span>
-            </button>
-          </form>
-        </mat-card-content>
-      </div>
-    </div>
-  </div>
+<div class="picsum-img-wrapper">
+  <img src="assets/images/team.jpg" alt="Random second slide">
 </div>
+<div class="logo"><span class="mat-display-4"><b>prograd employers</b></span></div>
+<mat-card class="centered">
+  <mat-card-title>Acquire The Best Talent</mat-card-title>
+  <hr>
+  <mat-card-content>
+    <form (ngSubmit)="registerCompany()" novalidate>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Company</mat-label>
+        <input matInput
+               placeholder="Company"
+               name="company"
+               [(ngModel)]="user.name"
+               required>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput
+               placeholder="Email"
+               name="email"
+               [(ngModel)]="user.email"
+               required email>
+
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput
+               placeholder="Password"
+               name="password"
+               [type]="hide ? 'password' : 'text'"
+               [(ngModel)]="user.password"
+               required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Company Website</mat-label>
+        <input matInput
+               placeholder="Company Website Link"
+               name="company-url"
+               [(ngModel)]="user.companyUrl"
+               required>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>HR Contact Name</mat-label>
+        <input matInput
+               placeholder="HR Contact Name"
+               name="recruiter"
+               [(ngModel)]="user.recruiter"
+               required>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>HR Contact Number</mat-label>
+        <input matInput
+               placeholder="Phone Number"
+               name="recruiter"
+               [(ngModel)]="user.recruiterPhone"
+               required>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Company Address</mat-label>
+        <input matInput
+               placeholder="Company Address"
+               name="recruiter"
+               [(ngModel)]="user.address"
+               required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" style="margin-bottom: 10px"><mat-icon>business</mat-icon>Register</button>
+    </form>
+  </mat-card-content>
+</mat-card>
 
 
 

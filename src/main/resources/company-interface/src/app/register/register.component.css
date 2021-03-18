@@ -1,15 +1,50 @@
+.picsum-img-wrapper {
+  width: 100vw;
+  height: auto;
+  font-size: 0;
+  display:table-cell;
+  vertical-align:middle;
+  text-align:center;
+}
+
+img {
+  display: block;
+  font-size: 0;
+  position: relative;
+  max-width:100%;
+  height:auto;
+  max-height:100%;
+}
+
+.centered {
+  position: absolute;
+  top: 125%;
+  left: 50%;
+  transform: translate(-50%, -125%);
+}
+
+mat-card {
+  width: 500px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
 .full-width {
   width: 100%;
 }
 
-.create-account h4 {
-  font-weight: bold;
+.logo {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -15%);
 }
 
-.register-form {
-  height: 60vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+h3 {
+  font-family: Lato, sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: underline;
 }
