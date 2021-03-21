@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StripeService, StripeCardComponent } from 'ngx-stripe';
-import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
+import {environment} from "../../environments/environment";
+import {loadStripe} from "@stripe/stripe-js/pure";
 
 @Component({
   selector: 'app-stripe-payment',
@@ -9,27 +9,35 @@ import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-
 })
 export class StripePaymentComponent implements OnInit {
 
-  cardOptions: StripeCardElementOptions = {
-    hidePostalCode: true,
-    style: {
-      base: {
-        iconColor: '#666EE8',
-        color: '#31325F',
-        fontWeight: '300',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSize: '18px',
-        '::placeholder': {
-          color: '#CFD7E0'
-        },
-      },
-    },
+  title = 'angular-stripe';
+  priceId = 'price_1IWVn6GPvpv5kncL4iSLrbkX';
+  product = {
+    title: 'Prograd Employers Subscription',
+    subTitle: 'Monthly Subscription',
+    description: 'Prgorad Employers allows to advertise entry-level jobs directly to talented individuals.'
   };
+  quantity = 1;
+  stripePromise = loadStripe(environment.stripe_key);
 
-  elementsOptions: StripeElementsOptions = {
-    locale: 'en-GB',
-  };
+  async checkout() {
+    // Call your backend to create the Checkout session.
 
-  constructor() { }
+    // When the customer clicks on the button, redirect them to Checkout.
+    const stripe = await this.stripePromise;
+    const { error } = await stripe.redirectToCheckout({
+      mode: 'subscription',
+      lineItems: [{ price: this.priceId, quantity: this.quantity }],
+      successUrl: `${window.location.href}/success`,
+      cancelUrl: `${window.location.href}/failure`,
+    });
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `error.message`.
+    if (error) {
+      console.log(error);
+    }
+
+  }
 
   ngOnInit(): void {
   }

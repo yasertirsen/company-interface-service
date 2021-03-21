@@ -99,7 +99,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatChipsModule,
     MatSnackBarModule,
     MatAutocompleteModule,
-    NgxStripeModule.forRoot('pk_test_51IR1L4GPvpv5kncLxVVXUDzx4vG2xCUB6nPRrlsoYTGas4F3JhGzA1QIPb5KhxcrLhv1VHm9B4pRgSvX4x9HTXdT00hwEm9Fning'),
+    NgxStripeModule.forRoot('pk_test_51IR1L4GPvpv5kncLxVVXUDzx4vG2xCUB6nPRrlsoYTGas4F3JhGzA1QIPb5KhxcrLhv1VHm9B4pRgSvX4x9HTXdT00hwEm9Fni'),
     MatSelectModule,
     ChartsModule,
     MatPaginatorModule,
