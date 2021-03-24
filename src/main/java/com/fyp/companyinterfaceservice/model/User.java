@@ -28,6 +28,7 @@ public class User {
     private Boolean isLocked;
     private Long expiresIn;
     private String token;
-    private Boolean enabled;
+    private boolean enabled;
+    private boolean subscribed;
     private UserProfile profile;
 }

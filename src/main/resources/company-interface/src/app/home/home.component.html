@@ -59,7 +59,7 @@
             <ng-container matColumnDef="statistics">
               <th mat-header-cell *matHeaderCellDef>Statistics</th>
               <td mat-cell *matCellDef="let position">
-                <button mat-raised-button color="primary" (click)="onStats(position.positionId)">
+                <button mat-raised-button color="primary" [disabled]="!user.subscribed" (click)="onStats(position.positionId)">
                   View Statistics
                 </button>
               </td>

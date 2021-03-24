@@ -8,7 +8,7 @@ import {SkillModel} from "../../models/skill.model";
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {map} from "rxjs/operators";
-import {StripeCardElementOptions, StripeElementsOptions} from "@stripe/stripe-js";
+import {MatSelectChange} from "@angular/material/select";
 
 @Component({
   selector: 'app-edit-job-dialog',
@@ -25,26 +25,6 @@ export class EditJobDialogComponent implements OnInit {
   skills: SkillModel[] = [];
   allSkills: SkillModel[] = [];
 
-  cardOptions: StripeCardElementOptions = {
-    hidePostalCode: true,
-    style: {
-      base: {
-        iconColor: '#666EE8',
-        color: '#31325F',
-        fontWeight: '300',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSize: '18px',
-        '::placeholder': {
-          color: '#CFD7E0'
-        },
-      },
-    },
-  };
-
-  elementsOptions: StripeElementsOptions = {
-    locale: 'en-GB',
-  };
-
   @ViewChild('skillInput') skillInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -56,6 +36,10 @@ export class EditJobDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  selectedType(event: MatSelectChange) {
+    this.position.priority = event.value === 'P';
   }
 
   onNoClick(): void {

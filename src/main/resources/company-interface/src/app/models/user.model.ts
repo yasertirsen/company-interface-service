@@ -15,5 +15,6 @@ export interface UserModel {
   isLocked: boolean;
   token: string;
   enabled: boolean;
+  subscribed: boolean;
   profile: ProfileModel;
 }

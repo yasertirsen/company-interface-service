@@ -66,6 +66,28 @@ export class UserService {
         "authorities": user.authorities,
         "isLocked": user.isLocked,
         "enabled": user.enabled,
+        "subscribed": user.subscribed,
+        "profile": user.profile
+      });
+  }
+
+  subscribeCompany(user: UserModel): Observable<any> {
+    return this.http.post<UserModel>('http://localhost:8081/creatCheckoutSession',
+      {
+        "companyId": user.companyId,
+        "email": user.email,
+        "password": user.password,
+        "name": user.name,
+        "companyUrl": user.companyUrl,
+        "address": user.address,
+        "recruiter": user.recruiter,
+        "recruiterPhone": user.recruiterPhone,
+        "created": user.created,
+        "role": user.role,
+        "authorities": user.authorities,
+        "isLocked": user.isLocked,
+        "enabled": user.enabled,
+        "subscribed": user.subscribed,
         "profile": user.profile
       });
   }

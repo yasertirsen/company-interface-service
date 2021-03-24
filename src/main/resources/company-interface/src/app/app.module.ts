@@ -50,6 +50,8 @@ import { ArchivedJobsComponent } from './archived-jobs/archived-jobs.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from "@angular/material/sort";
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { PaymentSuccessComponent } from './stripe-payment/payment-success/payment-success.component';
+import { PaymentFailureComponent } from './stripe-payment/payment-failure/payment-failure.component';
 
 
 @NgModule({
@@ -69,7 +71,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     StripePaymentComponent,
     JobStatsComponent,
     ChooseCandidateDialogComponent,
-    ArchivedJobsComponent
+    ArchivedJobsComponent,
+    PaymentSuccessComponent,
+    PaymentFailureComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {loadStripe} from "@stripe/stripe-js/pure";
+import {ActivatedRoute, Router} from "@angular/router";
+import {UserService} from "../service/user.service";
+
+declare var require: any
+const randomToken = require('random-token');
 
 @Component({
   selector: 'app-stripe-payment',
@@ -8,6 +13,8 @@ import {loadStripe} from "@stripe/stripe-js/pure";
   styleUrls: ['./stripe-payment.component.css']
 })
 export class StripePaymentComponent implements OnInit {
+
+  subscribed: boolean;
 
   title = 'angular-stripe';
   priceId = 'price_1IWVn6GPvpv5kncL4iSLrbkX';
@@ -19,16 +26,27 @@ export class StripePaymentComponent implements OnInit {
   quantity = 1;
   stripePromise = loadStripe(environment.stripe_key);
 
+  constructor(private userService: UserService) {
+  }
+
   async checkout() {
-    // Call your backend to create the Checkout session.
+    const token = randomToken(20);
+    localStorage.setItem('subscription_token', token);
+
+    this.userService.subscribeCompany(JSON.parse(localStorage.getItem('currentUser'))).subscribe(data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      });
 
     // When the customer clicks on the button, redirect them to Checkout.
     const stripe = await this.stripePromise;
     const { error } = await stripe.redirectToCheckout({
       mode: 'subscription',
       lineItems: [{ price: this.priceId, quantity: this.quantity }],
-      successUrl: `${window.location.href}/success`,
-      cancelUrl: `${window.location.href}/failure`,
+      successUrl: `${window.location.href}/success/` + token,
+      cancelUrl: `${window.location.href}/failure/`,
     });
     // If `redirectToCheckout` fails due to a browser or network
     // error, display the localized error message to your customer
@@ -40,6 +58,7 @@ export class StripePaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscribed = JSON.parse(localStorage.getItem('currentUser')).subscribed;
   }
 
 }

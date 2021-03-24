@@ -78,14 +78,18 @@
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
-            <div>
+            <div *ngIf="user.subscribed">
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Next</button>
+            </div>
+            <div *ngIf="!user.subscribed">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="onDone()">Done</button>
             </div>
           </form>
         </mat-step>
 
-        <mat-step [stepControl]="firstFormGroup">
+        <mat-step [stepControl]="firstFormGroup" *ngIf="user.subscribed">
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Priority</ng-template>
             <mat-form-field>

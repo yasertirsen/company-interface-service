@@ -47,10 +47,13 @@
     <mat-label>Description</mat-label>
     <textarea matInput [(ngModel)]="position.description"></textarea>
   </mat-form-field>
-  <ngx-stripe-card
-    [options]="cardOptions"
-    [elementsOptions]="elementsOptions"
-  ></ngx-stripe-card>
+  <mat-form-field>
+    <mat-label>Job Type</mat-label>
+    <mat-select (selectionChange)="selectedType($event)" required>
+      <mat-option value="P">Priority</mat-option>
+      <mat-option value="B">Basic</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>

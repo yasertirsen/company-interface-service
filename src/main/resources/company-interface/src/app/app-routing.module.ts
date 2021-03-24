@@ -10,6 +10,8 @@ import {StripePaymentComponent} from "./stripe-payment/stripe-payment.component"
 import {JobStatsComponent} from "./job-stats/job-stats.component";
 import {AuthGuard} from "./_guards/auth.guard";
 import {ArchivedJobsComponent} from "./archived-jobs/archived-jobs.component";
+import {PaymentSuccessComponent} from "./stripe-payment/payment-success/payment-success.component";
+import {PaymentFailureComponent} from "./stripe-payment/payment-failure/payment-failure.component";
 
 const routes: Routes = [
   {
@@ -42,6 +44,16 @@ const routes: Routes = [
   {
     path: 'payment',
     component: StripePaymentComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'payment/success/:token',
+    component: PaymentSuccessComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'payment/failure',
+    component: PaymentFailureComponent,
     canActivate: [AuthGuard]
   },
   {

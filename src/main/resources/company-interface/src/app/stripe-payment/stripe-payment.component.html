@@ -1,14 +1,23 @@
 <div class="container centered">
-  <div class="card" style="text-align: center">
+  <mat-card class="spacer" style="text-align: center" *ngIf="!subscribed">
     <div class="photo">
-      <img src="assets/images/prograd_icon.png">
+      <img style="width: 20%; height: 20%;" src="assets/images/prograd_icon.png">
     </div>
     <div class="description">
       <h2>{{product.title}}</h2>
       <h4>{{product.subTitle}}</h4>
       <h1>&euro;6.50</h1>
       <p>{{product.description}}</p>
-      <button mat-raised-button color="accent" (click)="checkout()">Checkout</button>
+      <button class="spacer" mat-raised-button color="accent" (click)="checkout()">Subscribe</button>
     </div>
-  </div>
+  </mat-card>
+  <mat-card class="spacer" style="text-align: center" *ngIf="subscribed">
+    <div class="photo">
+      <img style="width: 20%; height: 20%;" src="assets/images/prograd_icon.png">
+    </div>
+    <div class="description">
+      <h2>{{product.title}}</h2>
+      <h2>Subscription Status - <span style="color: green">Active</span></h2>
+    </div>
+  </mat-card>
 </div>
