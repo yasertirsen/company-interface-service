@@ -6,7 +6,6 @@ import com.fyp.companyinterfaceservice.exceptions.ProgradException;
 import com.fyp.companyinterfaceservice.exceptions.UserNotFoundException;
 import com.fyp.companyinterfaceservice.exceptions.UsernameExistsException;
 import com.fyp.companyinterfaceservice.model.NotificationEmail;
-import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.model.User;
 import com.fyp.companyinterfaceservice.model.UserPrincipal;
 import com.fyp.companyinterfaceservice.model.UserProfile;
@@ -26,10 +25,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import static com.fyp.companyinterfaceservice.constant.ErrorConstants.EMAIL_ALREADY_EXISTS;
@@ -46,7 +41,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final MailService mailService;
 
   @Value("${token.secret}")
-  private String bearerToken;
+  private String SECRET_TOKEN;
 
     @Autowired
     public UserServiceImpl(BCryptPasswordEncoder passwordEncoder, ProgradClient progradClient, MailService mailService) {
@@ -93,31 +88,31 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User findUserByEmail(String email) {
-        return progradClient.findByEmail(bearerToken, email).getBody();
+        return progradClient.findByEmail(SECRET_TOKEN, email).getBody();
     }
 
     @Override
     public User findUserByName(String name) {
-        return progradClient.findByName(bearerToken, name).getBody();
+        return progradClient.findByName(SECRET_TOKEN, name).getBody();
     }
 
     @Override
     public User findUserByToken(String token) {
-        return progradClient.findByToken(bearerToken, token).getBody();
+        return progradClient.findByToken(SECRET_TOKEN, token).getBody();
     }
 
     @Override
     public ResponseEntity<String> verifyAccount(String token) {
         User user = findUserByToken(token);
         user.setEnabled(true);
-        progradClient.update(bearerToken, user);
+        progradClient.update(SECRET_TOKEN, user);
 
         return new ResponseEntity<>(new Gson().toJson("Account Activated Successfully"), HttpStatus.OK);
     }
 
     @Override
     public User updateUser(User user) {
-        return progradClient.update(bearerToken, user);
+        return progradClient.update(SECRET_TOKEN, user);
     }
 
     @Override

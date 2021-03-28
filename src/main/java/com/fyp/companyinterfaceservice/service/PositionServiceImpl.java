@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static com.fyp.companyinterfaceservice.client.ProgradClient.bearerToken;
+import static com.fyp.companyinterfaceservice.constant.Constants.SECRET_TOKEN;
 
 @Service
 public class PositionServiceImpl implements PositionService {
@@ -32,8 +32,8 @@ public class PositionServiceImpl implements PositionService {
     public Position addPosition(Position position) throws ProgradException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         position.setDate(dtf.format(LocalDateTime.now()));
-        position = client.addPosition(bearerToken, position);
-        MailingList mailingList = client.getMailingList(bearerToken, position.getCompany().getCompanyId());
+        position = client.addPosition(SECRET_TOKEN, position);
+        MailingList mailingList = client.getMailingList(SECRET_TOKEN, position.getCompany().getCompanyId());
         if(mailingList != null) {
             for(String email : mailingList.getEmails()) {
                 mailService.sendMail(new NotificationEmail("New Job Alert - " + position.getCompany().getName(),
@@ -47,21 +47,21 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public Position updatePosition(Position position) {
-        return client.updatePosition(bearerToken, position);
+        return client.updatePosition(SECRET_TOKEN, position);
     }
 
     @Override
     public ResponseEntity<String> deletePosition(Long positionId) {
-        return client.deletePosition(bearerToken, positionId);
+        return client.deletePosition(SECRET_TOKEN, positionId);
     }
 
     @Override
     public List<Position> getCompanyPositions(Long id) {
-        return client.getCompanyPositions(bearerToken, id);
+        return client.getCompanyPositions(SECRET_TOKEN, id);
     }
 
     @Override
     public List<Application> getApplications(Long positionId) {
-        return client.getApplications(bearerToken, positionId);
+        return client.getApplications(SECRET_TOKEN, positionId);
     }
 }

@@ -1,9 +1,7 @@
 package com.fyp.companyinterfaceservice.controller;
 
-import com.fyp.companyinterfaceservice.client.ProgradClient;
 import com.fyp.companyinterfaceservice.model.User;
 import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
 import com.stripe.Stripe;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
@@ -18,18 +16,14 @@ import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.fyp.companyinterfaceservice.client.ProgradClient.bearerToken;
-
 @RestController
 public class PaymentController {
 
     private final Gson gson;
-    private final ProgradClient client;
 
     @Autowired
-    public PaymentController(Gson gson, ProgradClient client) {
+    public PaymentController(Gson gson) {
         this.gson = gson;
-        this.client = client;
     }
 
     @PostConstruct

@@ -1,5 +1,7 @@
 package com.fyp.companyinterfaceservice.constant;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class Constants {
 
 
@@ -18,4 +20,5 @@ public class Constants {
     public static final String ASIAN = "Asian";
     public static final String NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER = "Native Hawaiian or other Pacific islander";
     public static final String FROM_MULTIPLE_RACES = "From multiple races";
+    public static final String SECRET_TOKEN = "$iTv=(~B&s3VH3&M)mjN#`e_i8qzM]";
 }

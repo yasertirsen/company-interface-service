@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayInputStream;
 
-import static com.fyp.companyinterfaceservice.client.ProgradClient.bearerToken;
+import static com.fyp.companyinterfaceservice.constant.Constants.SECRET_TOKEN;
 
 @RestController
 public class ResumeController {
@@ -25,7 +25,7 @@ public class ResumeController {
 
     @GetMapping("getCv/{applicationId}")
     public ResponseEntity<InputStreamResource> getCv(@PathVariable Long applicationId) {
-        Resume resume = client.getCv(bearerToken, applicationId);
+        Resume resume = client.getCv(SECRET_TOKEN, applicationId);
 
         return ResponseEntity
                         .ok()

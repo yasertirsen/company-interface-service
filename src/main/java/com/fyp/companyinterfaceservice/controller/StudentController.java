@@ -1,7 +1,6 @@
 package com.fyp.companyinterfaceservice.controller;
 
 import com.fyp.companyinterfaceservice.client.ProgradClient;
-import com.fyp.companyinterfaceservice.model.Course;
 import com.fyp.companyinterfaceservice.model.Emails;
 import com.fyp.companyinterfaceservice.model.Stats;
 import com.fyp.companyinterfaceservice.model.Student;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-import static com.fyp.companyinterfaceservice.client.ProgradClient.bearerToken;
 import static com.fyp.companyinterfaceservice.constant.Constants.*;
 
 @RestController
@@ -25,14 +23,14 @@ public class StudentController {
 
     @GetMapping("/getStudent")
     public Student getStudent(@RequestParam String email) {
-        return client.getStudent(bearerToken, email);
+        return client.getStudent(SECRET_TOKEN, email);
     }
 
     @PostMapping("/getStats")
     public Stats getStats(@RequestBody Emails emails) {
         List<Student> students = new ArrayList<>();
         for(String email: emails.getEmails()) {
-            students.add(client.getStudent(bearerToken, email));
+            students.add(client.getStudent(SECRET_TOKEN, email));
         }
         return countStats(students);
     }
