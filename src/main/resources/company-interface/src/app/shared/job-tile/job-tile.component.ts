@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PositionModel} from "../../models/position.model";
+import {PositionModel} from "../../model/position.model";
 import {Router} from "@angular/router";
 
 @Component({

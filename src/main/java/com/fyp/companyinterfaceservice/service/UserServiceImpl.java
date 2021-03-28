@@ -39,7 +39,7 @@ import static com.fyp.companyinterfaceservice.model.Role.ROLE_USER;
 
 @Service
 @Qualifier("UserDetailsService")
-public class UserServiceImplementation implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final BCryptPasswordEncoder passwordEncoder;
     private final ProgradClient progradClient;
@@ -49,7 +49,7 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
   private String bearerToken;
 
     @Autowired
-    public UserServiceImplementation(BCryptPasswordEncoder passwordEncoder, ProgradClient progradClient, MailService mailService) {
+    public UserServiceImpl(BCryptPasswordEncoder passwordEncoder, ProgradClient progradClient, MailService mailService) {
         this.passwordEncoder = passwordEncoder;
         this.progradClient = progradClient;
         this.mailService = mailService;
@@ -118,6 +118,26 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
     @Override
     public User updateUser(User user) {
         return progradClient.update(bearerToken, user);
+    }
+
+    @Override
+    public ResponseEntity<String> sendVerifyEmail(String email) throws ProgradException {
+        User user = findUserByEmail(email);
+        String token = UUID.randomUUID().toString();
+        mailService.sendMail(new NotificationEmail("Change Password - Prograd Employers",
+                user.getEmail(), "We received a change password request, " +
+                "please click the link below to change your password " +
+                "http://localhost:4201/new-password/" + token));
+        user.setToken(token);
+        updateUser(user);
+        return new ResponseEntity<>(new Gson().toJson("Verification email sent"), HttpStatus.OK);
+    }
+
+    @Override
+    public User verifyChangePassword(String token, String password) {
+        User user = findUserByToken(token);
+        user.setPassword(passwordEncoder.encode(password));
+        return updateUser(user);
     }
 
     @Override

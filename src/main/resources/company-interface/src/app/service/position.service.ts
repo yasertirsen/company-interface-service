@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {PositionModel} from "../models/position.model";
+import {PositionModel} from "../model/position.model";
 import {LocalStorageService} from "ngx-webstorage";
 
 @Injectable({

@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {PositionModel} from "../../models/position.model";
+import {PositionModel} from "../../model/position.model";
 import {PositionService} from "../../service/position.service";
-import {ApplicationModel} from "../../models/application.model";
-import {StudentModel} from "../../models/student.model";
+import {ApplicationModel} from "../../model/application.model";
+import {StudentModel} from "../../model/student.model";
 import {StudentService} from "../../service/student.service";
 import {UserService} from "../../service/user.service";
 

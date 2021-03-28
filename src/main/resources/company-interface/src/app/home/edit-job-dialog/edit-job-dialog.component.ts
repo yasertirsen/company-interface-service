@@ -1,10 +1,10 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {PositionModel} from "../../models/position.model";
+import {PositionModel} from "../../model/position.model";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
-import {SkillModel} from "../../models/skill.model";
+import {SkillModel} from "../../model/skill.model";
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {map} from "rxjs/operators";

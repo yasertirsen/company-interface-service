@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {PositionService} from "../service/position.service";
-import {ApplicationModel} from "../models/application.model";
+import {ApplicationModel} from "../model/application.model";
 import {MatTableDataSource} from "@angular/material/table";
 
 @Component({

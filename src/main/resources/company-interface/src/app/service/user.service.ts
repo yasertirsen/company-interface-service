@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {UserModel} from "../models/user.model";
+import {UserModel} from "../model/user.model";
 import {LocalStorageService} from "ngx-webstorage";
-import {LoginRequest} from "../models/login-request-payload";
+import {LoginRequest} from "../model/login-request-payload";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 
@@ -90,5 +90,15 @@ export class UserService {
         "subscribed": user.subscribed,
         "profile": user.profile
       });
+  }
+
+  verifyToken(token: string, password: string): Observable<any>{
+    return this.http.put('http://localhost:8081/changePassword/' + token, {},
+      {params: {password: password}});
+  }
+
+  sendVerify(email: string): Observable<any>{
+    return this.http.get('http://localhost:8081/sendVerify/',
+      {params: {email: email}});
   }
 }

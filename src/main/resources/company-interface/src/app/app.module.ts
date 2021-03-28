@@ -52,6 +52,8 @@ import {MatSortModule} from "@angular/material/sort";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PaymentSuccessComponent } from './stripe-payment/payment-success/payment-success.component';
 import { PaymentFailureComponent } from './stripe-payment/payment-failure/payment-failure.component';
+import { VerifyChangePasswordComponent } from "./login/verify-change-password/verify-change-password.component";
+import { ChangePasswordComponent } from "./login/change-password/change-password.component";
 
 
 @NgModule({
@@ -73,7 +75,9 @@ import { PaymentFailureComponent } from './stripe-payment/payment-failure/paymen
     ChooseCandidateDialogComponent,
     ArchivedJobsComponent,
     PaymentSuccessComponent,
-    PaymentFailureComponent
+    PaymentFailureComponent,
+    VerifyChangePasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

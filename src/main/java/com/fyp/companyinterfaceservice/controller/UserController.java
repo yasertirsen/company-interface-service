@@ -23,7 +23,7 @@ import java.util.Set;
 import static com.fyp.companyinterfaceservice.constant.SecurityConstants.EXPIRATION_TIME;
 
 @RestController
-public class CompanyController {
+public class UserController {
 
     private final UserService userService;
     private final JWTTokenProvider jwtTokenProvider;
@@ -31,7 +31,7 @@ public class CompanyController {
     private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public CompanyController(UserService userService, JWTTokenProvider jwtTokenProvider, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+    public UserController(UserService userService, JWTTokenProvider jwtTokenProvider, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
         this.userService = userService;
         this.jwtTokenProvider = jwtTokenProvider;
         this.passwordEncoder = passwordEncoder;
@@ -73,6 +73,16 @@ public class CompanyController {
     @GetMapping("/currentUser")
     public User getCurrentUser() {
         return userService.getCurrentUser();
+    }
+
+    @GetMapping("/sendVerify")
+    public ResponseEntity<String> sendVerifyEmail(@RequestParam String email) throws ProgradException {
+        return userService.sendVerifyEmail(email);
+    }
+
+    @PutMapping("/changePassword/{token}")
+    public User verifyChangePassword(@PathVariable String token, @RequestParam String password) throws UserNotFoundException {
+        return userService.verifyChangePassword(token, password);
     }
 
     @PutMapping("/update")

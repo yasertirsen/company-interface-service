@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
-import {UserModel} from "../../models/user.model";
+import {UserModel} from "../../model/user.model";
 
 @Component({
   selector: 'app-payment-success',

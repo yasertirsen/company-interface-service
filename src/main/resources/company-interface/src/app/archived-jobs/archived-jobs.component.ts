@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {UserModel} from "../models/user.model";
-import {PositionModel} from "../models/position.model";
+import {UserModel} from "../model/user.model";
+import {PositionModel} from "../model/position.model";
 import {UserService} from "../service/user.service";
 import {PositionService} from "../service/position.service";
 import {Router} from "@angular/router";

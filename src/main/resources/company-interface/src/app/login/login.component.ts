@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {LoginRequest} from "../models/login-request-payload";
+import {LoginRequest} from "../model/login-request-payload";
 import {first} from "rxjs/operators";
 import {LocalStorageService} from "ngx-webstorage";
 import {ActivatedRoute, Router} from "@angular/router";

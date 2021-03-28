@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PositionService} from "../service/position.service";
 import {ActivatedRoute} from "@angular/router";
-import {ApplicationModel} from "../models/application.model";
+import {ApplicationModel} from "../model/application.model";
 import {StudentService} from "../service/student.service";
 import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 import {ChartOptions, ChartType} from "chart.js";

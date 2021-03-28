@@ -12,6 +12,8 @@ import {AuthGuard} from "./_guards/auth.guard";
 import {ArchivedJobsComponent} from "./archived-jobs/archived-jobs.component";
 import {PaymentSuccessComponent} from "./stripe-payment/payment-success/payment-success.component";
 import {PaymentFailureComponent} from "./stripe-payment/payment-failure/payment-failure.component";
+import {ChangePasswordComponent} from "./login/change-password/change-password.component";
+import {VerifyChangePasswordComponent} from "./login/verify-change-password/verify-change-password.component";
 
 const routes: Routes = [
   {
@@ -26,6 +28,13 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },{
+    path: 'change-password',
+    component: ChangePasswordComponent
+  },
+  {
+    path: 'new-password/:token',
+    component: VerifyChangePasswordComponent
   },
   {
     path: 'home',

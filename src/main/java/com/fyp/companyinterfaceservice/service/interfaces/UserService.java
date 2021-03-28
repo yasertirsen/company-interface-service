@@ -26,4 +26,8 @@ public interface UserService {
     ResponseEntity<String> verifyAccount(String token);
 
     User updateUser(User user);
+
+    ResponseEntity<String> sendVerifyEmail(String email) throws ProgradException;
+
+    User verifyChangePassword(String token, String password);
 }
