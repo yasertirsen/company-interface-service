@@ -3,6 +3,7 @@ package com.fyp.companyinterfaceservice.controller;
 import com.fyp.companyinterfaceservice.client.ProgradClient;
 import com.fyp.companyinterfaceservice.model.Resume;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayInputStream;
 
-import static com.fyp.companyinterfaceservice.constant.Constants.SECRET_TOKEN;
-
 @RestController
 public class ResumeController {
     private final ProgradClient client;
+    @Value("${token.secret}")
+    private String secretToken;
 
     @Autowired
     public ResumeController(ProgradClient client) {
@@ -25,7 +26,7 @@ public class ResumeController {
 
     @GetMapping("getCv/{applicationId}")
     public ResponseEntity<InputStreamResource> getCv(@PathVariable Long applicationId) {
-        Resume resume = client.getCv(SECRET_TOKEN, applicationId);
+        Resume resume = client.getCv(secretToken, applicationId);
 
         return ResponseEntity
                         .ok()

@@ -39,9 +39,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final ProgradClient progradClient;
     private final MailService mailService;
-
-  @Value("${token.secret}")
-  private String SECRET_TOKEN;
+    @Value("${token.secret}")
+    private String secretToken;
 
     @Autowired
     public UserServiceImpl(BCryptPasswordEncoder passwordEncoder, ProgradClient progradClient, MailService mailService) {
@@ -88,31 +87,31 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User findUserByEmail(String email) {
-        return progradClient.findByEmail(SECRET_TOKEN, email).getBody();
+        return progradClient.findByEmail(secretToken, email).getBody();
     }
 
     @Override
     public User findUserByName(String name) {
-        return progradClient.findByName(SECRET_TOKEN, name).getBody();
+        return progradClient.findByName(secretToken, name).getBody();
     }
 
     @Override
     public User findUserByToken(String token) {
-        return progradClient.findByToken(SECRET_TOKEN, token).getBody();
+        return progradClient.findByToken(secretToken, token).getBody();
     }
 
     @Override
     public ResponseEntity<String> verifyAccount(String token) {
         User user = findUserByToken(token);
         user.setEnabled(true);
-        progradClient.update(SECRET_TOKEN, user);
+        progradClient.update(secretToken, user);
 
         return new ResponseEntity<>(new Gson().toJson("Account Activated Successfully"), HttpStatus.OK);
     }
 
     @Override
     public User updateUser(User user) {
-        return progradClient.update(SECRET_TOKEN, user);
+        return progradClient.update(secretToken, user);
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.fyp.companyinterfaceservice.model.Emails;
 import com.fyp.companyinterfaceservice.model.Stats;
 import com.fyp.companyinterfaceservice.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -15,6 +16,8 @@ import static com.fyp.companyinterfaceservice.constant.Constants.*;
 public class StudentController {
 
     private final ProgradClient client;
+    @Value("${token.secret}")
+    private String secretToken;
 
     @Autowired
     public StudentController(ProgradClient client) {
@@ -23,14 +26,14 @@ public class StudentController {
 
     @GetMapping("/getStudent")
     public Student getStudent(@RequestParam String email) {
-        return client.getStudent(SECRET_TOKEN, email);
+        return client.getStudent(secretToken, email);
     }
 
     @PostMapping("/getStats")
     public Stats getStats(@RequestBody Emails emails) {
         List<Student> students = new ArrayList<>();
         for(String email: emails.getEmails()) {
-            students.add(client.getStudent(SECRET_TOKEN, email));
+            students.add(client.getStudent(secretToken, email));
         }
         return countStats(students);
     }

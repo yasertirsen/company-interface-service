@@ -8,6 +8,7 @@ import com.fyp.companyinterfaceservice.model.NotificationEmail;
 import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.service.interfaces.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +16,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static com.fyp.companyinterfaceservice.constant.Constants.SECRET_TOKEN;
-
 @Service
 public class PositionServiceImpl implements PositionService {
     private final ProgradClient client;
     private final MailService mailService;
+    @Value("${token.secret}")
+    private String secretToken;
 
     @Autowired
     public PositionServiceImpl(ProgradClient client, MailService mailService) {
@@ -32,8 +33,8 @@ public class PositionServiceImpl implements PositionService {
     public Position addPosition(Position position) throws ProgradException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         position.setDate(dtf.format(LocalDateTime.now()));
-        position = client.addPosition(SECRET_TOKEN, position);
-        MailingList mailingList = client.getMailingList(SECRET_TOKEN, position.getCompany().getCompanyId());
+        position = client.addPosition(secretToken, position);
+        MailingList mailingList = client.getMailingList(secretToken, position.getCompany().getCompanyId());
         if(mailingList != null) {
             for(String email : mailingList.getEmails()) {
                 mailService.sendMail(new NotificationEmail("New Job Alert - " + position.getCompany().getName(),
@@ -47,21 +48,21 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public Position updatePosition(Position position) {
-        return client.updatePosition(SECRET_TOKEN, position);
+        return client.updatePosition(secretToken, position);
     }
 
     @Override
     public ResponseEntity<String> deletePosition(Long positionId) {
-        return client.deletePosition(SECRET_TOKEN, positionId);
+        return client.deletePosition(secretToken, positionId);
     }
 
     @Override
     public List<Position> getCompanyPositions(Long id) {
-        return client.getCompanyPositions(SECRET_TOKEN, id);
+        return client.getCompanyPositions(secretToken, id);
     }
 
     @Override
     public List<Application> getApplications(Long positionId) {
-        return client.getApplications(SECRET_TOKEN, positionId);
+        return client.getApplications(secretToken, positionId);
     }
 }
