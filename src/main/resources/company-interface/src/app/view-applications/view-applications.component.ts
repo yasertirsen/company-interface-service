@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PositionService} from "../service/position.service";
 import {ApplicationModel} from "../model/application.model";
 import {MatTableDataSource} from "@angular/material/table";
+import {StudentService} from "../service/student.service";
 
 @Component({
   selector: 'app-view-applications',
@@ -13,9 +14,10 @@ export class ViewApplicationsComponent implements OnInit {
   loading = true;
   applications: ApplicationModel[];
   datasource: any;
-  displayedColumns: string[] = ['name', 'email', 'cv'];
+  displayedColumns: string[] = ['name', 'email', 'cv', 'profile'];
 
-  constructor(private positionService: PositionService, private activatedRoute: ActivatedRoute) {
+  constructor(private positionService: PositionService, private activatedRoute: ActivatedRoute,
+              private studentService: StudentService, private router: Router) {
     this.positionService.getApplications(this.activatedRoute.snapshot.params.positionId).subscribe(data => {
       this.applications = data;
       this.datasource = new MatTableDataSource(data);
@@ -44,5 +46,9 @@ export class ViewApplicationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onProfile(email: string) {
+    this.router.navigateByUrl('/applicant-profile/' + email);
   }
 }

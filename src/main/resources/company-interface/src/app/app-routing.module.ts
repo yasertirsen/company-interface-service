@@ -14,6 +14,7 @@ import {PaymentSuccessComponent} from "./stripe-payment/payment-success/payment-
 import {PaymentFailureComponent} from "./stripe-payment/payment-failure/payment-failure.component";
 import {ChangePasswordComponent} from "./login/change-password/change-password.component";
 import {VerifyChangePasswordComponent} from "./login/verify-change-password/verify-change-password.component";
+import {AlumniProfileComponent} from "./alumni-profile/alumni-profile.component";
 
 const routes: Routes = [
   {
@@ -48,6 +49,11 @@ const routes: Routes = [
   },{
     path: 'applications/:positionId',
     component: ViewApplicationsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'applicant-profile/:email',
+    component: AlumniProfileComponent,
     canActivate: [AuthGuard]
   },
   {

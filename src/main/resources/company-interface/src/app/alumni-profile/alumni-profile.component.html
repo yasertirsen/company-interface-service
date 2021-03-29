@@ -1,0 +1,111 @@
+<app-mat-spinner-overlay
+  overlay="true"
+  *ngIf="loading === true">
+</app-mat-spinner-overlay>
+
+<div class="container" *ngIf="loading === false">
+  <div class="row">
+    <div class="offset-2"></div>
+    <div class="col-md-12">
+      <section>
+        <div class="member-info">
+          <mat-card>
+            <div
+              gdAreas="header | content"
+              gdGap="16px"
+              gdRows="auto auto auto">
+
+              <div gdArea="header">
+                <mat-card-title>{{user.firstName}}'s Profile</mat-card-title>
+                <hr>
+              </div>
+              <span class="material-icons" style="font-size: 150px">
+                account_circle
+              </span>
+                <mat-card-content>
+                  <mat-card-subtitle>Details:</mat-card-subtitle>
+                  <mat-accordion multi>
+                    <mat-expansion-panel *ngIf="user.profile.course !== null">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Contact Information
+                        </mat-panel-title>
+                        <mat-panel-description>
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <a class="mat-flat-button" *ngIf="user.socialUrl !== undefined" href="//{{user.socialUrl}}">{{user.socialUrl}}</a><br>
+                      <a class="mat-flat-button"  href="mailto:{{user.email}}">{{user.email}}</a>
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel *ngIf="user.profile.course !== null">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Education
+                        </mat-panel-title>
+                        <mat-panel-description>
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <h2><strong>{{user.profile.course.name}}</strong></h2>
+                      <span><strong>{{user.profile.course.university}}</strong></span><br>
+                      <span><strong>{{user.profile.course.level}}</strong></span><br>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel *ngIf="user.profile.projects.length !== 0">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Projects
+                        </mat-panel-title>
+                        <mat-panel-description>
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <ul *ngFor="let project of user.profile.projects">
+                        <li><strong>{{project.title}}</strong></li>
+                        {{project.description}}
+                      </ul>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel *ngIf="user.profile.experiences.length !== 0">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Experience
+                        </mat-panel-title>
+                        <mat-panel-description>
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <ul *ngFor="let experience of user.profile.experiences">
+                        <li><strong>{{experience.role}} - {{experience.company}}</strong></li>
+                        {{experience.description}}
+                      </ul>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel *ngIf="user.profile.externalSkills.length !== 0">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Skills
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <ul>
+                        <li *ngFor="let skill of user.profile.externalSkills">{{skill.skillName}}</li>
+                      </ul>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel *ngIf="user.profile.race !== null || user.profile.age !== null || user.profile.gender !== null">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Additional Information
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p *ngIf="user.profile.gender !== null"><b>Gender:</b> {{user.profile.gender}}</p>
+                      <p *ngIf="user.profile.age !== null"><b>Age:</b> {{user.profile.age}}</p>
+                      <p *ngIf="user.profile.race !== null"><b>Race:</b> {{user.profile.race}}</p>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </mat-card-content>
+              </div>
+          </mat-card>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+

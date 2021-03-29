@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {LocalStorageService} from "ngx-webstorage";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -8,7 +7,7 @@ import {Observable} from "rxjs";
 })
 export class StudentService {
 
-  constructor(private http: HttpClient, private localStorage: LocalStorageService) {}
+  constructor(private http: HttpClient) {}
 
   getStudent(email: string): Observable<any> {
     return this.http.get('http://localhost:8081/getStudent',

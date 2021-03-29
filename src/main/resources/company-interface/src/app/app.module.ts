@@ -54,7 +54,8 @@ import { PaymentSuccessComponent } from './stripe-payment/payment-success/paymen
 import { PaymentFailureComponent } from './stripe-payment/payment-failure/payment-failure.component';
 import { VerifyChangePasswordComponent } from "./login/verify-change-password/verify-change-password.component";
 import { ChangePasswordComponent } from "./login/change-password/change-password.component";
-
+import { AlumniProfileComponent } from "./alumni-profile/alumni-profile.component";
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { ChangePasswordComponent } from "./login/change-password/change-password
     PaymentSuccessComponent,
     PaymentFailureComponent,
     VerifyChangePasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    AlumniProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +114,8 @@ import { ChangePasswordComponent } from "./login/change-password/change-password
     ChartsModule,
     MatPaginatorModule,
     MatSortModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatExpansionModule
   ],
   providers: [
     AuthGuard,
