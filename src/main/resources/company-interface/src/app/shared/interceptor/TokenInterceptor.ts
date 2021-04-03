@@ -16,13 +16,11 @@ export class TokenInterceptor implements HttpInterceptor {
     if(!localStorage.getItem('currentUser')) {
       return next.handle(request);
     }
-    else {
       const tokenizedRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${this.userService.getToken()}`
         }
       });
       return next.handle(tokenizedRequest);
-    }
   }
 }

@@ -65,4 +65,14 @@ public class PositionServiceImpl implements PositionService {
     public List<Application> getApplications(Long positionId) {
         return client.getApplications(secretToken, positionId);
     }
+
+    @Override
+    public Application updateApplication(Application application, String message) throws ProgradException {
+        Position position = client.findPositionById(secretToken, application.getPositionId());
+        mailService.sendMail(new NotificationEmail("Job Response - " + position.getTitle(),
+                application.getEmail(), message));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        application.setDate(dtf.format(LocalDateTime.now()));
+        return client.updateApplication(secretToken, application);
+    }
 }

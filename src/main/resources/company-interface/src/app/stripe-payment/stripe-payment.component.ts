@@ -34,7 +34,6 @@ export class StripePaymentComponent implements OnInit {
     localStorage.setItem('subscription_token', token);
 
     this.userService.subscribeCompany(JSON.parse(localStorage.getItem('currentUser'))).subscribe(data => {
-        console.log(data);
       },
       error => {
         console.log(error);

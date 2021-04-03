@@ -1,7 +1,6 @@
 package com.fyp.companyinterfaceservice.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,10 +12,4 @@ public class Resume {
     private String name;
     private byte[] data;
     private Long studentId;
-
-    public Resume(String name, byte[] data, Long studentId) {
-        this.name = name;
-        this.data = data;
-        this.studentId = studentId;
-    }
 }

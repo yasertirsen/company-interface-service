@@ -1,4 +1,4 @@
-import {ResumeModel} from "./ResumeModel";
+import {ResumeModel} from "./resume.model";
 
 export interface ApplicationModel {
   applicationId: number;
@@ -6,4 +6,7 @@ export interface ApplicationModel {
   email: string;
   resume: ResumeModel;
   positionId: number;
+  status: string;
+  date: string;
+  message: string;
 }

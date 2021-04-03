@@ -96,7 +96,6 @@ export class HomeComponent implements AfterViewInit {
     position.archive = true;
     position.priority = false;
     this.positionService.updatePosition(position).subscribe(data => {
-      console.log(data);
       this._snackBar.open('Archived successfully', 'Close', {
         duration: 5000
       });

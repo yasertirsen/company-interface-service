@@ -22,7 +22,6 @@ export class PaymentSuccessComponent implements OnInit {
       this.user.subscribed = true;
       this.userService.updateUser(this.user).subscribe(data => {
         localStorage.setItem('currentUser', JSON.stringify(data));
-        console.log(data);
       });
     }
   }

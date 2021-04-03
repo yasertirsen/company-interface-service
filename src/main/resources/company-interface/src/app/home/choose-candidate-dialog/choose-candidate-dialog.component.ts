@@ -39,7 +39,6 @@ export class ChooseCandidateDialogComponent implements OnInit {
       let user = JSON.parse(localStorage.getItem('currentUser'));
       user.profile.hiredStudents.push(this.selectedCandidate);
       this.userService.updateUser(user).subscribe(data => {
-        console.log(data);
       });
     }
     this.candidate.close('done');

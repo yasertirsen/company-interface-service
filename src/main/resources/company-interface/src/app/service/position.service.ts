@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {PositionModel} from "../model/position.model";
 import {LocalStorageService} from "ngx-webstorage";
+import {ApplicationModel} from "../model/application.model";
+import {ResumeModel} from "../model/resume.model";
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +62,18 @@ export class PositionService {
   getCv(applicationId: number): Observable<any> {
     return this.http.get('http://localhost:8081/getCv/' + applicationId,
       {responseType: 'blob'});
+  }
+
+  updateApplication(application: ApplicationModel, message: string): Observable<any> {
+    return this.http.put('http://localhost:8081/application/update', {
+      "applicationId": application.applicationId,
+      "fullName": application.fullName,
+      "email": application.email,
+      "resume": application.resume,
+      "positionId": application.positionId,
+      "status": application.status,
+      "date": application.date,
+    },
+      {params: {message: message}});
   }
 }

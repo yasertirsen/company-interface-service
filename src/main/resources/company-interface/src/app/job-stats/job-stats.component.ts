@@ -3,7 +3,7 @@ import {PositionService} from "../service/position.service";
 import {ActivatedRoute} from "@angular/router";
 import {ApplicationModel} from "../model/application.model";
 import {StudentService} from "../service/student.service";
-import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+import { Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 import {ChartOptions, ChartType} from "chart.js";
 
 @Component({
@@ -17,7 +17,15 @@ export class JobStatsComponent implements OnInit {
   emails: string[] = []
   // Pie
   public pieChartOptions: ChartOptions = {
-    responsive: true
+    responsive: true,
+    tooltips: {
+      mode: 'label',
+      callbacks: {
+        label: function(tooltipItem, data) {
+          return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+        }
+      }
+    }
   };
   public genderColors: Array < any > = [{
     backgroundColor: ['#03639e', '#e2599d']
@@ -33,7 +41,7 @@ export class JobStatsComponent implements OnInit {
   public raceLabels: Label[] = ['White', 'Black or African-American', 'American Indian or Alaskan Native', 'Asian',
   'Native Hawaiian or other Pacific islander', 'From multiple races'];
   public coursesLabels: Label[] = [];
-  public genderData: string[] = [];
+  public genderData: number[] = [];
   public ageData: string[] = [];
   public raceData: string[] = [];
   public coursesData: string[] = [];
@@ -59,7 +67,6 @@ export class JobStatsComponent implements OnInit {
 
   getStats(emails: string[]): void {
     this.studentService.getStats(emails).subscribe(data => {
-      console.log(data)
         for (let course of Object.keys(data.courses)) {
           this.coursesLabels.push(course);
           this.coursesData.push(data.courses[course]);

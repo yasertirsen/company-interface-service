@@ -11,4 +11,6 @@ public class ErrorConstants {
     public static final String SERVER_COULD_NOT_BE_REACH = "The service could not be reach!";
     public static final String EMAIL_ALREADY_EXISTS = "Email already exists";
     public static final String USERNAME_ALREADY_EXISTS = "Username already exists";
+    public static final String LOGIN_TOKEN_EXPIRED = "Login Token Expired";
+    public static final String INCORRECT_PASSWORD = "Incorrect password";
 }

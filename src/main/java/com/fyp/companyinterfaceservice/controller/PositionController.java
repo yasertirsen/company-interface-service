@@ -40,7 +40,12 @@ public class PositionController {
     }
 
     @GetMapping("/positions/getPositionApplications/{positionId}")
-    public  List<Application> getApplications(@PathVariable Long positionId) {
+    public List<Application> getApplications(@PathVariable Long positionId) {
         return positionService.getApplications(positionId);
+    }
+
+    @PutMapping("/application/update")
+    public Application updateApplication(@RequestBody Application application, @RequestParam String message) throws ProgradException {
+        return positionService.updateApplication(application, message);
     }
 }

@@ -4,6 +4,9 @@ import {PositionService} from "../service/position.service";
 import {ApplicationModel} from "../model/application.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {StudentService} from "../service/student.service";
+import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ActionsDialogComponent} from "./actions-dialog/actions-dialog.component";
 
 @Component({
   selector: 'app-view-applications',
@@ -14,10 +17,11 @@ export class ViewApplicationsComponent implements OnInit {
   loading = true;
   applications: ApplicationModel[];
   datasource: any;
-  displayedColumns: string[] = ['name', 'email', 'cv', 'profile'];
+  displayedColumns: string[] = ['name', 'email', 'cv', 'profile', 'actions'];
 
   constructor(private positionService: PositionService, private activatedRoute: ActivatedRoute,
-              private studentService: StudentService, private router: Router) {
+              private studentService: StudentService, private router: Router, private dialog: MatDialog,
+              private _snackBar: MatSnackBar) {
     this.positionService.getApplications(this.activatedRoute.snapshot.params.positionId).subscribe(data => {
       this.applications = data;
       this.datasource = new MatTableDataSource(data);
@@ -50,5 +54,20 @@ export class ViewApplicationsComponent implements OnInit {
 
   onProfile(email: string) {
     this.router.navigateByUrl('/applicant-profile/' + email);
+  }
+
+  onActions(application: ApplicationModel) {
+      const actionsDialog =
+        this.dialog.open(ActionsDialogComponent, {
+          width: '500px',
+          data: application
+        });
+    actionsDialog.afterClosed().subscribe(result => {
+        if(result !== undefined) {
+          this.positionService.updateApplication(result, result.message).subscribe(data => {
+            this._snackBar.open('Response Sent Successfully', 'Close', {duration: 3000});
+          });
+        }
+      });
   }
 }

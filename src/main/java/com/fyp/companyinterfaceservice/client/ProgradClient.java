@@ -64,6 +64,12 @@ public interface ProgradClient {
     @GetMapping("/positions/all")
     List<Position> getAllPositions(@RequestHeader(AUTH_TOKEN) String SECRET_TOKEN);
 
+    @PutMapping("/positions/application/update")
+    Application updateApplication(@RequestHeader(AUTH_TOKEN) String SECRET_TOKEN, @RequestBody Application application);
+
+    @GetMapping(value = "/positions/findById", produces = "application/json")
+    Position findPositionById(@RequestHeader(AUTH_TOKEN) String secretToken, @RequestParam Long id);
+
     // files endpoint
 
     @GetMapping("/files/getCv")

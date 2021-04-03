@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Send Application Response</h1>
+<div class="content" mat-dialog-content>
+  <mat-form-field class="full-width" appearance="outline" >
+    <mat-label>Type of Response</mat-label>
+    <mat-select [(ngModel)]="application.status" required>
+      <mat-option *ngFor="let action of actions" [value]="action.value">
+        {{action.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Message</mat-label>
+    <textarea matInput [(ngModel)]="application.message"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onSend()">Send</button>
+</div>

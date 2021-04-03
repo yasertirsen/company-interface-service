@@ -56,6 +56,7 @@ import { VerifyChangePasswordComponent } from "./login/verify-change-password/ve
 import { ChangePasswordComponent } from "./login/change-password/change-password.component";
 import { AlumniProfileComponent } from "./alumni-profile/alumni-profile.component";
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ActionsDialogComponent } from './view-applications/actions-dialog/actions-dialog.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     PaymentFailureComponent,
     VerifyChangePasswordComponent,
     ChangePasswordComponent,
-    AlumniProfileComponent
+    AlumniProfileComponent,
+    ActionsDialogComponent
   ],
   imports: [
     BrowserModule,

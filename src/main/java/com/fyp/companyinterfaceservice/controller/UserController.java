@@ -90,11 +90,4 @@ public class UserController {
         return userService.updateUser(user);
     }
 
-//    @PostMapping("/changePassword")
-//    public User changePassword(@RequestParam String email, @RequestParam String password) {
-//        User user = this.userService.findUserByEmail(email);
-//        user.setPassword(passwordEncoder.encode(password));
-//        return this.userService.updateUser(user);
-//    }
-
 }
