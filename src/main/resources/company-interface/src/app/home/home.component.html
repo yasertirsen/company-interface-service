@@ -4,11 +4,8 @@
 </app-mat-spinner-overlay>
 
 <div class="container" *ngIf="loading === false">
-  <div class="row">
-    <div class="offset-2"></div>
-    <div class="col-md-12">
       <mat-card class="full-width">
-        <mat-card-title *ngIf="user.name !== null">
+        <mat-card-title *ngIf="!!user.name">
           {{user.name}} Jobs Dashboard
         </mat-card-title>
         <mat-card-subtitle>
@@ -89,6 +86,4 @@
           <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </mat-card-content>
       </mat-card>
-    </div>
-  </div>
 </div>

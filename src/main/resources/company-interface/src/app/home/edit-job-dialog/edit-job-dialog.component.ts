@@ -24,6 +24,7 @@ export class EditJobDialogComponent implements OnInit {
   filteredSkills: Observable<SkillModel[]>;
   skills: SkillModel[] = [];
   allSkills: SkillModel[] = [];
+  subscribed = false;
 
   @ViewChild('skillInput') skillInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -36,6 +37,7 @@ export class EditJobDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscribed = JSON.parse(localStorage.getItem('currentUser')).subscribed;
   }
 
   selectedType(event: MatSelectChange) {

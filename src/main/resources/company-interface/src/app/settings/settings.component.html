@@ -1,0 +1,63 @@
+<app-mat-spinner-overlay
+  overlay="true"
+  *ngIf="loading">
+</app-mat-spinner-overlay>
+
+<div class="container" *ngIf="!loading">
+  <mat-card class="full-width">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="center">
+              <span class="material-icons" style="font-size: 150px">
+                business
+              </span>
+          <strong *ngIf="!!user.name">
+            {{ user.name }}
+          </strong>
+          <button mat-icon-button color="primary" (click)="openDialog()"><mat-icon>edit</mat-icon></button>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <hr>
+    <mat-card-content>
+
+      <div class="center-flat">
+            <span class="user-details">
+            <mat-icon>email</mat-icon> {{user.email}}
+          </span>
+        <span class="user-details" *ngIf="!!user.address">
+            <span class="material-icons">
+                home
+              </span>{{user.address}}
+          </span>
+        <span class="user-details" *ngIf="!!user.companyUrl">
+            <span class="material-icons">
+                link
+              </span> {{user.companyUrl}}
+          </span>
+      </div>
+      <hr>
+      <section>
+        <div class="section-header">
+          <div class="flex-container">
+            <h3>Company Bio</h3>
+          </div>
+        </div>
+      </section>
+      <span>{{ user.profile.bio }}</span>
+      <hr>
+
+      <section>
+        <div class="section-header">
+          <div class="flex-container">
+            <h3>Human Resources Contact</h3>
+          </div>
+        </div>
+      </section>
+      <div class="course-details" *ngIf="!!user.recruiterPhone && !!user.recruiter">
+        <span><strong>{{ user.recruiter }}</strong></span><br>
+        <span>{{ user.recruiterPhone }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

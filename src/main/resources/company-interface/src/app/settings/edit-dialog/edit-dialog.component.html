@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Edit Details</h1>
+<div class="content" mat-dialog-content>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Company Bio</mat-label>
+    <textarea matInput [(ngModel)]="data.user.profile.bio" required></textarea>
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.user.name" required>
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Recruiter</mat-label>
+    <input matInput [(ngModel)]="data.user.recruiter" required>
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Recruiter Phone</mat-label>
+    <input matInput [(ngModel)]="data.user.recruiterPhone" required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.user">Save</button>
+</div>

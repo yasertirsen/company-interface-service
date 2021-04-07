@@ -32,7 +32,7 @@
 
 .mat-card{
   flex-direction: column;
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
 }
 
 .mat-card-header {
@@ -46,7 +46,7 @@
 
 .positions-table {
   width: 100%;
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
 }
 
 

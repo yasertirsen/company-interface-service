@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserModel} from "../model/user.model";
-import {LocalStorageService} from "ngx-webstorage";
 import {LoginRequest} from "../model/login-request-payload";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
@@ -51,45 +50,11 @@ export class UserService {
   }
 
   updateUser(user: UserModel): Observable<UserModel>{
-    return this.http.put<UserModel>('http://localhost:8081/update',
-      {
-        "companyId": user.companyId,
-        "email": user.email,
-        "password": user.password,
-        "name": user.name,
-        "companyUrl": user.companyUrl,
-        "address": user.address,
-        "recruiter": user.recruiter,
-        "recruiterPhone": user.recruiterPhone,
-        "created": user.created,
-        "role": user.role,
-        "authorities": user.authorities,
-        "isLocked": user.isLocked,
-        "enabled": user.enabled,
-        "subscribed": user.subscribed,
-        "profile": user.profile
-      });
+    return this.http.put<UserModel>('http://localhost:8081/update', user);
   }
 
   subscribeCompany(user: UserModel): Observable<any> {
-    return this.http.post<UserModel>('http://localhost:8081/creatCheckoutSession',
-      {
-        "companyId": user.companyId,
-        "email": user.email,
-        "password": user.password,
-        "name": user.name,
-        "companyUrl": user.companyUrl,
-        "address": user.address,
-        "recruiter": user.recruiter,
-        "recruiterPhone": user.recruiterPhone,
-        "created": user.created,
-        "role": user.role,
-        "authorities": user.authorities,
-        "isLocked": user.isLocked,
-        "enabled": user.enabled,
-        "subscribed": user.subscribed,
-        "profile": user.profile
-      });
+    return this.http.post<UserModel>('http://localhost:8081/creatCheckoutSession', user);
   }
 
   verifyToken(token: string, password: string): Observable<any>{

@@ -1,7 +1,5 @@
-import {StudentModel} from "./student.model";
-import {PositionModel} from "./position.model";
-
 export interface ProfileModel {
   profileId: number;
   hiredStudents: number[];
+  bio: string;
 }
