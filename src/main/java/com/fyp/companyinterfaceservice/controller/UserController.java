@@ -1,24 +1,20 @@
 package com.fyp.companyinterfaceservice.controller;
 
 
-import com.fyp.companyinterfaceservice.exceptions.*;
+import com.fyp.companyinterfaceservice.exceptions.EmailExistsException;
+import com.fyp.companyinterfaceservice.exceptions.ProgradException;
+import com.fyp.companyinterfaceservice.exceptions.UserNotFoundException;
+import com.fyp.companyinterfaceservice.exceptions.UsernameExistsException;
 import com.fyp.companyinterfaceservice.jwt.JWTTokenProvider;
-import com.fyp.companyinterfaceservice.model.Position;
 import com.fyp.companyinterfaceservice.model.User;
 import com.fyp.companyinterfaceservice.model.UserPrincipal;
 import com.fyp.companyinterfaceservice.service.interfaces.UserService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.util.List;
-import java.util.Set;
 
 import static com.fyp.companyinterfaceservice.constant.SecurityConstants.EXPIRATION_TIME;
 
@@ -27,14 +23,12 @@ public class UserController {
 
     private final UserService userService;
     private final JWTTokenProvider jwtTokenProvider;
-    private final BCryptPasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public UserController(UserService userService, JWTTokenProvider jwtTokenProvider, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+    public UserController(UserService userService, JWTTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager) {
         this.userService = userService;
         this.jwtTokenProvider = jwtTokenProvider;
-        this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
     }
 
@@ -46,19 +40,14 @@ public class UserController {
     @PostMapping("/login")
     @ResponseBody
     public ResponseEntity<User> login(@RequestBody User user) throws Exception {
-
+        authenticate(user.getEmail(), user.getPassword());
         User loggedUser = userService.findUserByEmail(user.getEmail());
-        if(passwordEncoder.matches(user.getPassword(), loggedUser.getPassword())) {
-            authenticate(loggedUser.getEmail(), loggedUser.getPassword());
-            UserPrincipal userPrincipal = new UserPrincipal(loggedUser);
+        UserPrincipal userPrincipal = new UserPrincipal(loggedUser);
 
-            loggedUser.setExpiresIn(EXPIRATION_TIME);
-            loggedUser.setToken(jwtTokenProvider.generateJwtToken(userPrincipal));
+        loggedUser.setExpiresIn(EXPIRATION_TIME);
+        loggedUser.setToken(jwtTokenProvider.generateJwtToken(userPrincipal));
 
-            return new ResponseEntity<>(loggedUser, HttpStatus.OK);
-        }
-        else
-            throw new IncorrectPasswordException();
+        return new ResponseEntity<>(loggedUser, HttpStatus.OK);
     }
 
     private void authenticate(String username, String password) {

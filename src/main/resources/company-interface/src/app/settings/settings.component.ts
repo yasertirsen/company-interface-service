@@ -29,6 +29,7 @@ export class SettingsComponent implements OnInit {
         data: {user: this.user}
       });
     skillsDialog.afterClosed().subscribe(result => {
+      console.log(result);
       if(!!result) {
         result.token = null;
         this.userService.updateUser(result).subscribe(data => {

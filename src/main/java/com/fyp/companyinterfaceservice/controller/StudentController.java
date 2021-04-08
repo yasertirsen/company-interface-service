@@ -1,6 +1,7 @@
 package com.fyp.companyinterfaceservice.controller;
 
 import com.fyp.companyinterfaceservice.client.ProgradClient;
+import com.fyp.companyinterfaceservice.exceptions.CompanyExceptionHandler;
 import com.fyp.companyinterfaceservice.model.Emails;
 import com.fyp.companyinterfaceservice.model.Stats;
 import com.fyp.companyinterfaceservice.model.Student;
@@ -13,7 +14,7 @@ import java.util.*;
 import static com.fyp.companyinterfaceservice.constant.Constants.*;
 
 @RestController
-public class StudentController {
+public class StudentController extends CompanyExceptionHandler {
 
     private final ProgradClient client;
     @Value("${token.secret}")
