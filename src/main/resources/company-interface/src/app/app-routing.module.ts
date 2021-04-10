@@ -16,6 +16,7 @@ import {ChangePasswordComponent} from "./login/change-password/change-password.c
 import {VerifyChangePasswordComponent} from "./login/verify-change-password/verify-change-password.component";
 import {AlumniProfileComponent} from "./alumni-profile/alumni-profile.component";
 import {SettingsComponent} from "./settings/settings.component";
+import {SubscriptionGuard} from "./_guards/subscription.guard";
 
 const routes: Routes = [
   {
@@ -75,7 +76,7 @@ const routes: Routes = [
   {
     path: 'stats/:positionId',
     component: JobStatsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [SubscriptionGuard]
   },
   {
     path: 'archive',

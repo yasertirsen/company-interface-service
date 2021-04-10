@@ -42,7 +42,6 @@ import {StripePaymentComponent} from './stripe-payment/stripe-payment.component'
 import {MatSelectModule} from "@angular/material/select";
 import {JobStatsComponent} from './job-stats/job-stats.component';
 import {ChartsModule} from 'ng2-charts';
-import {AuthGuard} from "./_guards/auth.guard";
 import {TokenInterceptor} from "./shared/interceptor/TokenInterceptor";
 import {ChooseCandidateDialogComponent} from './home/choose-candidate-dialog/choose-candidate-dialog.component';
 import {ArchivedJobsComponent} from './archived-jobs/archived-jobs.component';
@@ -122,7 +121,6 @@ import {EditDialogComponent} from './settings/edit-dialog/edit-dialog.component'
     MatExpansionModule
   ],
   providers: [
-    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
