@@ -13,16 +13,12 @@
         </mat-card-subtitle>
         <mat-card-content>
           <p><strong>Number of positions open: </strong> {{ positions.length }}</p>
-        </mat-card-content>
-        <mat-card-actions>
           <a routerLink="/add-job"><button mat-raised-button color="primary">Add Job</button></a>
-        </mat-card-actions>
-        <mat-card-content>
+          <div *ngIf="positions.length > 0">
           <mat-form-field>
             <mat-label>Search</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Date or title" #input>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Date or title">
           </mat-form-field>
-
           <table mat-table [dataSource]="datasource" matSort class="positions-table">
             <ng-container matColumnDef="date">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
@@ -83,7 +79,13 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+          </div>
+
+          <div *ngIf="positions.length === 0">
+            <hr>
+            <h3 style="text-align: center">No Job Posts Open</h3>
+          </div>
         </mat-card-content>
       </mat-card>
 </div>

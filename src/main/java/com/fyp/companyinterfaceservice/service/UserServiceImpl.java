@@ -28,7 +28,6 @@ import java.time.Instant;
 import java.util.UUID;
 
 import static com.fyp.companyinterfaceservice.constant.ErrorConstants.EMAIL_ALREADY_EXISTS;
-import static com.fyp.companyinterfaceservice.constant.ErrorConstants.USERNAME_ALREADY_EXISTS;
 import static com.fyp.companyinterfaceservice.model.Role.ROLE_USER;
 
 
@@ -51,7 +50,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User register(User user) throws UsernameExistsException, EmailExistsException, UserNotFoundException, ProgradException {
-        validateUsernameAndEmail(user.getName(), user.getEmail());
+        validateEmail(user.getEmail());
 
         String verificationToken = UUID.randomUUID().toString();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -74,14 +73,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return registeredUser;
     }
 
-    private void validateUsernameAndEmail(String newName, String newEmail) throws UsernameExistsException, EmailExistsException {
+    private void validateEmail(String newEmail) throws EmailExistsException {
         User userByEmail = findUserByEmail(newEmail);
         if(userByEmail != null) {
             throw new EmailExistsException(EMAIL_ALREADY_EXISTS);
-        }
-        User userByUsername = findUserByName(newName);
-        if(userByUsername != null) {
-            throw new UsernameExistsException(USERNAME_ALREADY_EXISTS);
         }
     }
 

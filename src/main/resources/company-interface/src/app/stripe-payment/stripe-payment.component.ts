@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {loadStripe} from "@stripe/stripe-js/pure";
-import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../service/user.service";
 
 declare var require: any
@@ -21,7 +20,6 @@ export class StripePaymentComponent implements OnInit {
   product = {
     title: 'Prograd Employers Subscription',
     subTitle: 'Monthly Subscription',
-    description: 'Prgorad Employers allows to advertise entry-level jobs directly to talented individuals.'
   };
   quantity = 1;
   stripePromise = loadStripe(environment.stripe_key);

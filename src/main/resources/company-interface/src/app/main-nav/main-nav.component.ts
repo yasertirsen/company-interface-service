@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import {Component} from '@angular/core';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Observable} from 'rxjs';
+import {map, shareReplay} from 'rxjs/operators';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {MatSidenav} from "@angular/material/sidenav";
 import {UserService} from "../service/user.service";
@@ -14,7 +14,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class MainNavComponent {
   activeRoute: string;
-  isAuthenticated: boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

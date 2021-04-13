@@ -1,3 +1,15 @@
 .full-width {
   width: 100%;
 }
+
+.half-width {
+  width: 50%;
+}
+
+textarea {
+  height: 200px;
+}
+
+.spacer {
+  margin: 10px;
+}

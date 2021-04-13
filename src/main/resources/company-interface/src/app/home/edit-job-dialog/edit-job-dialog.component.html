@@ -47,7 +47,7 @@
     <mat-label>Description</mat-label>
     <textarea matInput [(ngModel)]="position.description"></textarea>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field *ngIf="subscribed">
     <mat-label>Job Type</mat-label>
     <mat-select (selectionChange)="selectedType($event)" required>
       <mat-option value="P">Priority</mat-option>
