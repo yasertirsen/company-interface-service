@@ -10,8 +10,7 @@
       <mat-vertical-stepper class="spacer" [linear]="isLinear">
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Job title</ng-template>
-            <div style="display: inline-block;">
+            <ng-template matStepLabel>Job Overview</ng-template>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Job Title</mat-label>
               <input matInput placeholder="Job Title" formControlName="firstCtrl" required
@@ -22,7 +21,6 @@
               <input matInput placeholder="Job Title" formControlName="url"
                      [(ngModel)]="position.url">
             </mat-form-field>
-            </div>
             <div>
               <button mat-button matStepperNext>Next</button>
             </div>
@@ -31,6 +29,11 @@
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Description</ng-template>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Salary</mat-label>
+              <input matInput placeholder="Job Title" type="number" min="0" formControlName="salary"
+                     [(ngModel)]="position.salary">
+            </mat-form-field>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Description</mat-label>
               <textarea matInput placeholder="Description" formControlName="firstCtrl" required

@@ -64,7 +64,8 @@ export class AddJobComponent implements OnInit {
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
-      url: ['', Validators.nullValidator(null)]
+      url: ['', Validators.nullValidator(null)],
+      salary: ['', Validators.nullValidator(null)]
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
