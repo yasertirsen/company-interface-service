@@ -14,3 +14,7 @@
 }
 
 button.link { background:none;border:none; }
+
+.success {
+  background-color: #3CD4A0 !important;
+}

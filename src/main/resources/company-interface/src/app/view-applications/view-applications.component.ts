@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {PositionService} from "../service/position.service";
 import {ApplicationModel} from "../model/application.model";
@@ -17,7 +17,7 @@ export class ViewApplicationsComponent implements OnInit {
   loading = true;
   applications: ApplicationModel[];
   datasource: any;
-  displayedColumns: string[] = ['name', 'email', 'cv', 'profile', 'actions'];
+  displayedColumns: string[] = ['name', 'email', 'cv', 'profile', 'status', 'actions'];
 
   constructor(private positionService: PositionService, private activatedRoute: ActivatedRoute,
               private studentService: StudentService, private router: Router, private dialog: MatDialog,

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {UserModel} from "../model/user.model";
 import {UserService} from "../service/user.service";
 import {PositionModel} from "../model/position.model";
@@ -25,6 +25,7 @@ export class HomeComponent implements AfterViewInit {
   positions: PositionModel[] = [];
   datasource = new MatTableDataSource();
   loading = true;
+  notifications = new Map<PositionModel, number>();
 
   private paginator: MatPaginator;
   private sort: MatSort;
@@ -50,11 +51,19 @@ export class HomeComponent implements AfterViewInit {
     this.positionService.getCompanyPositions(this.user.companyId).subscribe(data => {
       for(let position of data) {
         if(!position.archive) {
-          this.positions.push(position);
+          position.notifications = 0;
+          this.positionService.getApplications(position.positionId).subscribe(data => {
+            for(let application of data) {
+              if(application.status === 'No Response') {
+                position.notifications++;
+              }
+            }
+            this.positions.push(position);
+            this.datasource.data = this.positions;
+            this.loading = false;
+          });
         }
       }
-      this.datasource.data = this.positions;
-      this.loading = false;
     });
   }
 

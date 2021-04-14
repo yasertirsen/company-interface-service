@@ -34,20 +34,7 @@ export class AddJobComponent implements OnInit {
   token: string;
   user: UserModel;
   loading = true;
-  position: PositionModel = {
-    positionId: 0,
-    title: '',
-    description: '',
-    location: '',
-    date: null,
-    url: null,
-    salary: 0,
-    clicks: 0,
-    priority: null,
-    archive: false,
-    company: null,
-    requirements: []
-  };
+  position = new PositionModel();
 
   @ViewChild('skillInput') skillInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;

@@ -1,7 +1,7 @@
 import {SkillModel} from "./skill.model";
 import {UserModel} from "./user.model";
 
-export interface PositionModel {
+export class PositionModel {
   positionId: number;
   title: string;
   description: string;
@@ -14,4 +14,5 @@ export interface PositionModel {
   archive: boolean;
   company: UserModel;
   requirements: SkillModel[];
+  notifications: number;
 }

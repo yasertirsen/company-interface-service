@@ -57,6 +57,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {ActionsDialogComponent} from './view-applications/actions-dialog/actions-dialog.component';
 import {SettingsComponent} from './settings/settings.component';
 import {EditDialogComponent} from './settings/edit-dialog/edit-dialog.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,7 @@ import {EditDialogComponent} from './settings/edit-dialog/edit-dialog.component'
     AlumniProfileComponent,
     ActionsDialogComponent,
     SettingsComponent,
-    EditDialogComponent
+    EditDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,7 +119,8 @@ import {EditDialogComponent} from './settings/edit-dialog/edit-dialog.component'
     MatPaginatorModule,
     MatSortModule,
     FlexLayoutModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatBadgeModule
   ],
   providers: [
     {

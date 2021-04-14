@@ -99,6 +99,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public ResponseEntity<String> verifyAccount(String token) {
         User user = findUserByToken(token);
         user.setEnabled(true);
+        user.setToken(null);
         progradClient.update(secretToken, user);
 
         return new ResponseEntity<>(new Gson().toJson("Account Activated Successfully"), HttpStatus.OK);

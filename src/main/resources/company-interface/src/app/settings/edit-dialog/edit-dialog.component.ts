@@ -19,4 +19,7 @@ export class EditDialogComponent implements OnInit {
     this.edit.close();
   }
 
+  onSave() {
+    this.edit.close(this.data.user);
+  }
 }

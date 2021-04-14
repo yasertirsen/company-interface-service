@@ -2,26 +2,26 @@
 <div class="content" mat-dialog-content>
   <mat-form-field class="full-width" appearance="outline">
     <mat-label>Company Bio</mat-label>
-    <textarea matInput [(ngModel)]="data.user.profile.bio" required></textarea>
+    <textarea matInput [(ngModel)]="data.user.profile.bio"></textarea>
   </mat-form-field>
   <mat-form-field class="full-width" appearance="outline">
     <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="data.user.name" required>
+    <input matInput [(ngModel)]="data.user.name">
   </mat-form-field>
   <mat-form-field class="full-width" appearance="outline">
     <mat-label>Address</mat-label>
-    <input matInput [(ngModel)]="data.user.address" required>
+    <input matInput [(ngModel)]="data.user.address">
   </mat-form-field>
   <mat-form-field class="full-width" appearance="outline">
     <mat-label>Recruiter</mat-label>
-    <input matInput [(ngModel)]="data.user.recruiter" required>
+    <input matInput [(ngModel)]="data.user.recruiter">
   </mat-form-field>
   <mat-form-field class="full-width" appearance="outline">
     <mat-label>Recruiter Phone</mat-label>
-    <input matInput [(ngModel)]="data.user.recruiterPhone" required>
+    <input matInput [(ngModel)]="data.user.recruiterPhone">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.user">Save</button>
+  <button mat-button (click)="onSave()">Save</button>
 </div>

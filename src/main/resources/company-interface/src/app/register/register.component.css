@@ -40,10 +40,6 @@ mat-card {
   transform: translate(-50%, -15%);
 }
 
-h3 {
-  font-family: Lato, sans-serif;
-}
-
 a {
   color: white;
   text-decoration: underline;
