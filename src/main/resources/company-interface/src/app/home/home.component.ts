@@ -49,20 +49,25 @@ export class HomeComponent implements AfterViewInit {
               private router : Router, private dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.positionService.getCompanyPositions(this.user.companyId).subscribe(data => {
-      for(let position of data) {
-        if(!position.archive) {
-          position.notifications = 0;
-          this.positionService.getApplications(position.positionId).subscribe(data => {
-            for(let application of data) {
-              if(application.status === 'No Response') {
-                position.notifications++;
+      if(data.length > 0) {
+        for(let position of data) {
+          if(!position.archive) {
+            position.notifications = 0;
+            this.positionService.getApplications(position.positionId).subscribe(data => {
+              for(let application of data) {
+                if(application.status === 'No Response') {
+                  position.notifications++;
+                }
               }
-            }
-            this.positions.push(position);
-            this.datasource.data = this.positions;
-            this.loading = false;
-          });
+              this.positions.push(position);
+              this.datasource.data = this.positions;
+              this.loading = false;
+            });
+          }
         }
+      }
+      else {
+        this.loading = false;
       }
     });
   }

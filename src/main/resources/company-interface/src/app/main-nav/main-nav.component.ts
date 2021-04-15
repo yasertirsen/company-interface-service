@@ -14,6 +14,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class MainNavComponent {
   activeRoute: string;
+  unauthorized: string[] = ['/login', '/register', '/', '/change-password', '/new-password'];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

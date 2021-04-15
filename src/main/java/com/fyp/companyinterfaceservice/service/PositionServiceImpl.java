@@ -38,9 +38,8 @@ public class PositionServiceImpl implements PositionService {
         if(mailingList != null) {
             for(String email : mailingList.getEmails()) {
                 mailService.sendMail(new NotificationEmail("New Job Alert - " + position.getCompany().getName(),
-                        email, "Hi,\n\n" +
-                        position.getCompany().getName() + " has posted a new job - " + position.getTitle() +
-                        "\nCheck it out here http://localhost:4202/job/" + position.getPositionId()));
+                        email, position.getCompany().getName() + " has posted a new job - " + position.getTitle() +
+                        "Check it out below.",  "http://localhost:4202/job/" + position.getPositionId()));
             }
         }
         return position;
@@ -70,7 +69,7 @@ public class PositionServiceImpl implements PositionService {
     public Application updateApplication(Application application, String message) throws ProgradException {
         Position position = client.findPositionById(secretToken, application.getPositionId());
         mailService.sendMail(new NotificationEmail("Job Response - " + position.getTitle(),
-                application.getEmail(), message));
+                application.getEmail(), message, ""));
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         application.setDate(dtf.format(LocalDateTime.now()));
         return client.updateApplication(secretToken, application);

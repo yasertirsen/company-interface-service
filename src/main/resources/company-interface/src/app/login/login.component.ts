@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginRequest} from "../model/login-request-payload";
 import {first} from "rxjs/operators";
@@ -28,11 +28,19 @@ export class LoginComponent implements OnInit {
 
     this.activatedRoute.queryParams
       .subscribe(params => {
-        if (params.registered !== undefined && params.registered === 'true') {
+        if(params.registered !== undefined && params.registered === 'true') {
           this._snackBar.open('Please Check your inbox for activation email'
             + '\nactivate your account before you Login!', 'Close', {
             duration: 5000
           });
+        }
+        if(!!params.token) {
+          this.userService.verify(params.token).subscribe(data => {
+              this._snackBar.open(data, 'Close', {duration: 3000});
+            },
+            error => {
+              this._snackBar.open('Error while verifying account', 'Close', {duration: 3000});
+            });
         }
         this.returnUrl = params.returnUrl? params.returnUrl: '/home'
       });

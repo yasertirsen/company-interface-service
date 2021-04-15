@@ -67,8 +67,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         mailService.sendMail(new NotificationEmail("Account Activation - Prograd Employers",
                 user.getEmail(), "Thank you for signing up to Prograd Employers, " +
-                "please click the link below to activate your account " +
-                "http://localhost:8081/verification/" + verificationToken));
+                "please click the link below to activate your account.",
+                "http://localhost:4201/login?token=" + verificationToken));
 
         return registeredUser;
     }
@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         String token = UUID.randomUUID().toString();
         mailService.sendMail(new NotificationEmail("Change Password - Prograd Employers",
                 user.getEmail(), "We received a change password request, " +
-                "please click the link below to change your password " +
+                "please click the link below to change your password.",
                 "http://localhost:4201/new-password/" + token));
         user.setToken(token);
         updateUser(user);

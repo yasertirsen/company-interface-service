@@ -66,4 +66,8 @@ export class UserService {
     return this.http.get('http://localhost:8081/sendVerify/',
       {params: {email: email}});
   }
+
+  verify(token: string): Observable<any> {
+    return this.http.get('http://localhost:8081/verification/' + token);
+  }
 }
