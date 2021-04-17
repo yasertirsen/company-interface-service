@@ -1,7 +1,6 @@
 package com.fyp.companyinterfaceservice.filter;
 
 import com.fyp.companyinterfaceservice.jwt.JWTTokenProvider;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,6 @@ import java.util.List;
 import static com.fyp.companyinterfaceservice.constant.SecurityConstants.OPTIONS_HTTP_METHOD;
 import static com.fyp.companyinterfaceservice.constant.SecurityConstants.TOKEN_PREFIX;
 
-@Data
 @Component
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
