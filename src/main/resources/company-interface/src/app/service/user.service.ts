@@ -24,8 +24,9 @@ export class UserService {
         "password": details.password})
       .pipe(map(user => {
         if(user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('token', user.token);
+          user.token = null;
+          localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('email', user.email);
           localStorage.setItem('expiresIn', user.expiresIn);
         }
