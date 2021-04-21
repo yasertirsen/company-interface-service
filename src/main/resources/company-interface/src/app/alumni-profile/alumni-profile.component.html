@@ -19,9 +19,14 @@
                 <mat-card-title>{{user.firstName}}'s Profile</mat-card-title>
                 <hr>
               </div>
-              <span class="material-icons" style="font-size: 150px">
+              <span class="material-icons" *ngIf="!retrievedImage" style="font-size: 150px">
                 account_circle
               </span>
+              <img *ngIf="!!retrievedImage"
+                   mat-card-avatar
+                   [src]=retrievedImage
+                   alt="Profile"
+                   class="profile-img">
                 <mat-card-content>
                   <mat-card-subtitle>Details:</mat-card-subtitle>
                   <mat-accordion multi>

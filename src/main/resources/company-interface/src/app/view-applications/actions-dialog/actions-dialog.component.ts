@@ -19,6 +19,7 @@ export class ActionsDialogComponent implements OnInit {
     {value: 'Offered', viewValue: 'Offer position'},
     {value: 'Under Review', viewValue: 'Application under review'},
     {value: 'No Response', viewValue: 'Other'}];
+  status: string;
 
   constructor(public action: MatDialogRef<ActionsDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public application: ApplicationModel) {}
@@ -31,6 +32,7 @@ export class ActionsDialogComponent implements OnInit {
   }
 
   onSend(): void {
+    this.application.status = this.status
     this.action.close(this.application);
   }
 

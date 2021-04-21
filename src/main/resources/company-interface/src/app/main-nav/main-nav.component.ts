@@ -38,4 +38,14 @@ export class MainNavComponent {
       duration: 3000
     });
   }
+
+  isAuth(): boolean {
+    return this.userService.isAuthenticated();
+  }
+
+  getLink() {
+    if(this.isAuth())
+      return '/home';
+    return '/'
+  }
 }

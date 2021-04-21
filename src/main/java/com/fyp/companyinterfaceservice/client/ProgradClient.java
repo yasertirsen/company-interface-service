@@ -3,12 +3,10 @@ package com.fyp.companyinterfaceservice.client;
 import com.fyp.companyinterfaceservice.model.*;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @FeignClient(url = "${feign.url}", name = "${feign.company}")
 public interface ProgradClient {
@@ -74,6 +72,9 @@ public interface ProgradClient {
 
     @GetMapping("/files/getCv")
     Resume getCv(@RequestHeader(AUTH_TOKEN) String SECRET_TOKEN, @RequestParam Long applicationId);
+
+    @GetMapping("/files/getImage")
+    Image getStudentAvatar(@RequestHeader(AUTH_TOKEN) String secretToken, @RequestParam Long userId);
 
     // students endpoint
 

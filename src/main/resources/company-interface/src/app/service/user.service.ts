@@ -71,4 +71,8 @@ export class UserService {
   verify(token: string): Observable<any> {
     return this.http.get('http://localhost:8081/verification/' + token);
   }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('currentUser');
+  }
 }

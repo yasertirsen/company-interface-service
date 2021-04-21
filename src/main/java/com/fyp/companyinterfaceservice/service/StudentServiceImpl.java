@@ -2,6 +2,7 @@ package com.fyp.companyinterfaceservice.service;
 
 import com.fyp.companyinterfaceservice.client.ProgradClient;
 import com.fyp.companyinterfaceservice.model.Emails;
+import com.fyp.companyinterfaceservice.model.Image;
 import com.fyp.companyinterfaceservice.model.Stats;
 import com.fyp.companyinterfaceservice.model.Student;
 import com.fyp.companyinterfaceservice.service.interfaces.StudentService;
@@ -90,4 +91,10 @@ public class StudentServiceImpl implements StudentService {
 
         return stats;
     }
+
+    @Override
+    public Image getImage(Long userId) {
+        return client.getStudentAvatar(secretToken, userId);
+    }
+
 }

@@ -63,7 +63,7 @@ export class ViewApplicationsComponent implements OnInit {
           data: application
         });
     actionsDialog.afterClosed().subscribe(result => {
-        if(result !== undefined) {
+        if(!!result) {
           this.positionService.updateApplication(result, result.message).subscribe(data => {
             this._snackBar.open('Response Sent Successfully', 'Close', {duration: 3000});
           });

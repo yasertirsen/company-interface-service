@@ -60,9 +60,7 @@ export class AddJobComponent implements OnInit {
   }
 
   onDone(): void {
-    for(let skill of this.skills) {
-      this.position.requirements.push(skill);
-    }
+    this.position.requirements = this.skills;
     this.addJob();
   }
 

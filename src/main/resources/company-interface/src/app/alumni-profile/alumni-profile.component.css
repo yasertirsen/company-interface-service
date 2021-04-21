@@ -37,3 +37,8 @@
 .spacer {
   margin: 10px;
 }
+
+.profile-img {
+  height: 100px;
+  width: 100px;
+}
