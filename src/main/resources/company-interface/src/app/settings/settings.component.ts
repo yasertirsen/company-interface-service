@@ -25,8 +25,7 @@ export class SettingsComponent implements OnInit {
   openDialog() {
     const skillsDialog =
       this.dialog.open(EditDialogComponent, {
-        width: '500px',
-        data: {user: this.user}
+        width: '500px'
       });
     skillsDialog.afterClosed().subscribe(result => {
       console.log(result);

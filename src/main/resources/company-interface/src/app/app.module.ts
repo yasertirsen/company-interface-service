@@ -58,6 +58,8 @@ import {ActionsDialogComponent} from './view-applications/actions-dialog/actions
 import {SettingsComponent} from './settings/settings.component';
 import {EditDialogComponent} from './settings/edit-dialog/edit-dialog.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+
 
 @NgModule({
   declarations: [
@@ -120,7 +122,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatSortModule,
     FlexLayoutModule,
     MatExpansionModule,
-    MatBadgeModule
+    MatBadgeModule,
+    CKEditorModule
   ],
   providers: [
     {

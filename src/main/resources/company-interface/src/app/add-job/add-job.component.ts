@@ -12,6 +12,7 @@ import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/a
 import {MatChipInputEvent} from "@angular/material/chips";
 import {map} from "rxjs/operators";
 import {MatSelectChange} from "@angular/material/select";
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-add-job',
@@ -20,6 +21,7 @@ import {MatSelectChange} from "@angular/material/select";
 })
 export class AddJobComponent implements OnInit {
 
+  public editor = ClassicEditor;
   visible = true;
   selectable = true;
   removable = true;
@@ -67,7 +69,7 @@ export class AddJobComponent implements OnInit {
   addJob(): void {
     this.positionService.addPosition(this.position).subscribe(position => {
       this.router.navigateByUrl('/home',
-        {queryParams: {completed: 'true'}});
+        /* Removed unsupported properties by Angular migration: queryParams. */ {});
     });
   }
 

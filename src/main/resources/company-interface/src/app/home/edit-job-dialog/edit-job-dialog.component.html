@@ -43,11 +43,9 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-  <mat-form-field class="full-width" appearance="outline">
-    <mat-label>Description</mat-label>
-    <textarea matInput [(ngModel)]="position.description"></textarea>
-  </mat-form-field>
-  <mat-form-field *ngIf="subscribed">
+    <label>Description</label>
+    <ckeditor #descEditor [data]="position.description" [editor]="editor"></ckeditor>
+  <mat-form-field *ngIf="subscribed" class="full-width" appearance="outline">
     <mat-label>Job Type</mat-label>
     <mat-select (selectionChange)="selectedType($event)" required>
       <mat-option value="P">Priority</mat-option>
@@ -57,5 +55,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button (click)="onSave()" cdkFocusInitial>Save Changes</button>
+  <button mat-button (click)="onSave()">Save Changes</button>
 </div>

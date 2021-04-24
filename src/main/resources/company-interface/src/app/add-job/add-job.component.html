@@ -34,11 +34,11 @@
               <input matInput placeholder="Job Title" type="number" min="0" formControlName="salary"
                      [(ngModel)]="position.salary">
             </mat-form-field>
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Description</mat-label>
-              <textarea matInput placeholder="Description" formControlName="firstCtrl" required
-                        [(ngModel)]="position.description"></textarea>
-            </mat-form-field>
+            <label>Description</label>
+            <ckeditor [(ngModel)]="position.description"
+                      [editor]="editor"
+                      [ngModelOptions]="{standalone: true}"
+                      class="full-width"></ckeditor>
             <div>
               <button mat-button matStepperNext>Next</button>
             </div>

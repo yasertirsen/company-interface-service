@@ -1,5 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {Component, OnInit} from '@angular/core';
+import {MatDialogRef} from "@angular/material/dialog";
 import {UserModel} from "../../model/user.model";
 
 @Component({
@@ -8,11 +8,12 @@ import {UserModel} from "../../model/user.model";
   styleUrls: ['./edit-dialog.component.css']
 })
 export class EditDialogComponent implements OnInit {
+  user: UserModel;
 
-  constructor(public edit: MatDialogRef<EditDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: {user: UserModel}) { }
+  constructor(public edit: MatDialogRef<EditDialogComponent>) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   onNoClick(): void {
@@ -20,6 +21,6 @@ export class EditDialogComponent implements OnInit {
   }
 
   onSave() {
-    this.edit.close(this.data.user);
+    this.edit.close(this.user);
   }
 }

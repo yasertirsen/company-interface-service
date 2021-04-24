@@ -119,7 +119,7 @@ export class HomeComponent implements AfterViewInit {
   onEdit(position: PositionModel): void {
     const editDialog =
       this.dialog.open(EditJobDialogComponent, {
-        width: '500px',
+        width: '700px',
         data: position
       });
     editDialog.afterClosed().subscribe(result => {

@@ -9,6 +9,7 @@ import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/a
 import {MatChipInputEvent} from "@angular/material/chips";
 import {map} from "rxjs/operators";
 import {MatSelectChange} from "@angular/material/select";
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-edit-job-dialog',
@@ -16,6 +17,9 @@ import {MatSelectChange} from "@angular/material/select";
   styleUrls: ['./edit-job-dialog.component.css']
 })
 export class EditJobDialogComponent implements OnInit {
+
+  @ViewChild('descEditor') descEditor: any;
+  public editor = ClassicEditor;
   visible = true;
   selectable = true;
   removable = true;
@@ -49,6 +53,9 @@ export class EditJobDialogComponent implements OnInit {
   }
 
   onSave(): void {
+    if (this.descEditor && this.descEditor.editorInstance) {
+      this.position.description = this.descEditor.editorInstance.getData();
+    }
     this.editJob.close(this.position);
   }
 
