@@ -79,4 +79,9 @@ public class UserController {
         return userService.updateUser(user);
     }
 
+    @GetMapping("/")
+    public ResponseEntity<String> healthIndicator() {
+        return new ResponseEntity<>("UP", HttpStatus.OK);
+    }
+
 }
