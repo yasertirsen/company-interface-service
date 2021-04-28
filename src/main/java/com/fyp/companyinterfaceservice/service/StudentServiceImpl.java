@@ -66,30 +66,34 @@ public class StudentServiceImpl implements StudentService {
         }
 
         for (Map.Entry<String, Double> entry : courses.entrySet()) {
-            courses.put(entry.getKey(), (entry.getValue()/total) * 100);
+            courses.put(entry.getKey(), round((entry.getValue()/total) * 100));
         }
 
         stats.setCourses(courses);
 
-        stats.setMale(((double) Collections.frequency((genders), M) / (double) genders.size()) * 100);
-        stats.setFemale(((double) Collections.frequency((genders), F) / (double) genders.size()) * 100);
+        stats.setMale(round(((double) Collections.frequency((genders), M) / (double) genders.size()) * 100));
+        stats.setFemale(round(((double) Collections.frequency((genders), F) / (double) genders.size()) * 100));
 
-        stats.setAgeTier1(((double) Collections.frequency((ages), TIER1) / (double) ages.size()) * 100);
-        stats.setAgeTier2(((double) Collections.frequency((ages), TIER2) / (double) ages.size()) * 100);
-        stats.setAgeTier3(((double) Collections.frequency((ages), TIER3) / (double) ages.size()) * 100);
-        stats.setAgeTier4(((double) Collections.frequency((ages), TIER4) / (double) ages.size()) * 100);
-        stats.setAgeTier5(((double) Collections.frequency((ages), TIER5) / (double) ages.size()) * 100);
-        stats.setAgeTier6(((double) Collections.frequency((ages), TIER6) / (double) ages.size()) * 100);
-        stats.setAgeTier7(((double) Collections.frequency((ages), TIER7) / (double) ages.size()) * 100);
+        stats.setAgeTier1(round(((double) Collections.frequency((ages), TIER1) / (double) ages.size()) * 100));
+        stats.setAgeTier2(round(((double) Collections.frequency((ages), TIER2) / (double) ages.size()) * 100));
+        stats.setAgeTier3(round(((double) Collections.frequency((ages), TIER3) / (double) ages.size()) * 100));
+        stats.setAgeTier4(round(((double) Collections.frequency((ages), TIER4) / (double) ages.size()) * 100));
+        stats.setAgeTier5(round(((double) Collections.frequency((ages), TIER5) / (double) ages.size()) * 100));
+        stats.setAgeTier6(round(((double) Collections.frequency((ages), TIER6) / (double) ages.size()) * 100));
+        stats.setAgeTier7(round(((double) Collections.frequency((ages), TIER7) / (double) ages.size()) * 100));
 
-        stats.setWhite(((double) Collections.frequency((races), WHITE) / (double) races.size()) * 100);
-        stats.setBAA(((double) Collections.frequency((races), BLACK_OR_AFRICAN_AMERICAN) / (double) races.size()) * 100);
-        stats.setAIAN(((double) Collections.frequency((races), AMERICAN_INDIAN_OR_ALASKAN_NATIVE) / (double) races.size()) * 100);
-        stats.setAsian(((double) Collections.frequency((races), ASIAN) / (double) races.size()) * 100);
-        stats.setNHPI(((double) Collections.frequency((races), NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER) / (double) races.size()) * 100);
-        stats.setMR(((double) Collections.frequency((races), FROM_MULTIPLE_RACES) / (double) races.size()) * 100);
+        stats.setWhite(round(((double) Collections.frequency((races), WHITE) / (double) races.size()) * 100));
+        stats.setBAA(round(((double) Collections.frequency((races), BLACK_OR_AFRICAN_AMERICAN) / (double) races.size()) * 100));
+        stats.setAIAN(round(((double) Collections.frequency((races), AMERICAN_INDIAN_OR_ALASKAN_NATIVE) / (double) races.size()) * 100));
+        stats.setAsian(round(((double) Collections.frequency((races), ASIAN) / (double) races.size()) * 100));
+        stats.setNHPI(round(((double) Collections.frequency((races), NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER) / (double) races.size()) * 100));
+        stats.setMR(round(((double) Collections.frequency((races), FROM_MULTIPLE_RACES) / (double) races.size()) * 100));
 
         return stats;
+    }
+
+    public double round(double number) {
+        return Math.round(number * 100.0) / 100.0;
     }
 
     @Override
