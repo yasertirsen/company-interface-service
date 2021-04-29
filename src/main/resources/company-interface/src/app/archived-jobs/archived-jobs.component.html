@@ -63,7 +63,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
         </div>
           <h3 class="mat-h3" *ngIf="positions.length === 0" style="text-align: center"><strong>No archived jobs</strong></h3>
         </mat-card-content>
