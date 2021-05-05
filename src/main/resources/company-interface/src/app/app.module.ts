@@ -59,6 +59,7 @@ import {SettingsComponent} from './settings/settings.component';
 import {EditDialogComponent} from './settings/edit-dialog/edit-dialog.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -123,7 +124,8 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
     FlexLayoutModule,
     MatExpansionModule,
     MatBadgeModule,
-    CKEditorModule
+    CKEditorModule,
+    MatTooltipModule
   ],
   providers: [
     {
