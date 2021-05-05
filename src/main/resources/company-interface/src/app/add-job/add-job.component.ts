@@ -13,6 +13,7 @@ import {MatChipInputEvent} from "@angular/material/chips";
 import {map} from "rxjs/operators";
 import {MatSelectChange} from "@angular/material/select";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-add-job',
@@ -42,7 +43,8 @@ export class AddJobComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(private _formBuilder: FormBuilder,
-              private userService: UserService, private positionService: PositionService, private router: Router) {
+              private userService: UserService, private positionService: PositionService, private router: Router,
+              private _snackBar: MatSnackBar) {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.position.company = this.user;
     this.loading = false;
@@ -68,8 +70,8 @@ export class AddJobComponent implements OnInit {
 
   addJob(): void {
     this.positionService.addPosition(this.position).subscribe(position => {
-      this.router.navigateByUrl('/home',
-        /* Removed unsupported properties by Angular migration: queryParams. */ {});
+      this._snackBar.open('Job added successfully', 'Close', {duration: 3000});
+      this.router.navigateByUrl('/home');
     });
   }
 

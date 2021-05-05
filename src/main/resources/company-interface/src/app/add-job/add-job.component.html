@@ -102,7 +102,7 @@
         <mat-step [stepControl]="firstFormGroup" *ngIf="user.subscribed">
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Priority</ng-template>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
               <mat-label>Job Type</mat-label>
               <mat-select (selectionChange)="selectedType($event)" required>
                 <mat-option value="P">Priority</mat-option>

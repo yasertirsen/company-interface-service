@@ -39,7 +39,7 @@ public class PositionServiceImpl implements PositionService {
             for(String email : mailingList.getEmails()) {
                 mailService.sendMail(new NotificationEmail("New Job Alert - " + position.getCompany().getName(),
                         email, position.getCompany().getName() + " has posted a new job - " + position.getTitle() +
-                        "Check it out below.",  "http://localhost:4202/job/" + position.getPositionId()));
+                        " Check it out below.",  "http://localhost:4202/job/" + position.getPositionId()));
             }
         }
         return position;
